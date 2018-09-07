@@ -1,0 +1,90 @@
+
+<section>
+
+    <div class="container-fluid m-l-75"> <!-- main container -->
+        <div class="row m-b-30"> <!--start row --> 
+           <div class="dash-head-top">
+            <p class="f-28 bitter-bold m-l-20 c-x-l-gray"><strong> Help Center</strong></p>
+        </div>
+
+        <!-- style="float: right"  -->
+        <div class="p-10" ng-if="!vm.isEnableEditor && vm.showEditButton">
+            <button class="btn btn-default" ng-click="vm.toggleEditor(true)">Edit Content</button>
+        </div>
+        <div class="col-md-9">
+
+            <div> <!--left right -->
+                <hr ng-if="!vm.isEnableEditor">
+
+
+                <button ng-if="vm.isEnableEditor" style="float: right" ng-click="vm.toggleEditor(false)">close</button>
+
+
+
+                <button ng-if="vm.isEnableEditor" style="float: right" ng-click="vm.saveHelpContent()">Save</button>
+
+                <div ng-if="vm.isEnableEditor" ng-class='{"contenDiv":1==1}' text-angular ng-model="vm.helpContents"></div>
+
+
+                <div ng-if="!vm.isEnableEditor" ng-bind-html="vm.helpContentsBindHtml"></div>
+
+               <!--  <div class="form-group has-success has-feedback m-b-30">
+                  
+                </div>
+                <div class="devide-line m-b-30">
+                    <p class="Proxima-s-b f-18">How do I recognize a flower/plant ?</p>
+                    <p class="m-b-40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod and vitality, tempor ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="devide-line m-b-30">
+                    <p class="Proxima-s-b f-18">How do I recognize a flower/plant ?</p>
+                    <p class="m-b-40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod and vitality, tempor ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="devide-line m-b-30">
+                    <p class="Proxima-s-b f-18">How do I recognize a flower/plant ?</p>
+                    <p class="m-b-40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod and vitality, tempor ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="devide-line m-b-30">
+                    <p class="Proxima-s-b f-18">How do I recognize a flower/plant ?</p>
+                    <p class="m-b-40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod and vitality, tempor ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="devide-line m-b-30">
+                    <p class="Proxima-s-b f-18">How do I recognize a flower/plant ?</p>
+                    <p class="m-b-40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod and vitality, tempor ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="devide-line m-b-30">
+                    <p class="Proxima-s-b f-18">How do I recognize a flower/plant ?</p>
+                    <p class="m-b-40">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod and vitality, tempor ut labore et dolore magna aliqua.</p>
+                </div> -->
+            </div>
+        </div> <!--  end col-md-9 -->
+
+        <!--start right -->    
+        <div class="col-md-3 col-sm-12">
+            <div class="right-cont-box m-t-0">
+                <div class="m-b-20">
+                   <a href="#" class="f-16 t-brake" onclick='window.location.href = "mailto:support@kudzuapp.com?subject=Kudzu Query&body=Hi Support,";'> <span class="glyphicon glyphicon-envelope f-26 c-org m-b-10 "></span></a>
+
+                   <a href="#" style="text-decoration: none;" onclick='window.location.href = "mailto:support@kudzuapp.com?subject=Kudzu Query&body=Hi Support,";'> <p class="f-20 c-org">Support</p></a>
+
+               </div>
+               <div class="m-b-50">
+                   <!--  <p class="f-16 m-b-5">888.5551.342</p> -->
+                   <a href="#" class="f-16 t-brake" onclick='window.location.href = "mailto:support@kudzuapp.com?subject=Kudzu Query&body=Hi Support,";'>support@kudzuapp.com</a>
+               </div>
+               <hr>
+                <!-- <div>
+                    <p class="f-18 c-gray">HOURS</p>
+                    <p class="f-16 m-b-5">Monday-Friday</p>
+                    <p class="f-16 ">9am-5pm PST</p>
+                </div>   -->
+
+            </div>
+        </div><!--start right -->
+
+
+
+    </div><!--end row -->    
+
+
+</div><!-- main container -->
+</section>

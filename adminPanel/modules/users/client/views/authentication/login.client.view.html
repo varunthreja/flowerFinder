@@ -1,0 +1,37 @@
+<div data-ng-controller="AuthenticationController" data-ng-hide="authentication.user"> <!-- start row -->
+  <div class="main"> <!-- start main -->
+    <div class="text-center m-t-100 m-b-40">
+      <img src="/modules/core/client/img/brand/logo_login.png" class="m-b-10">
+      <p class="text-center bitter-bold f-28">Kudzu</p>
+      <p class="text-center c-l-gray f-18">Flower recognition system.</p>
+    </div>
+    <div class="row">
+    <div class="col-xs-12">
+    <form name="vm.loginForm" ng-submit="vm.signin(vm.loginForm.$valid)" class="signin col-xs-12" autocomplete="off" name="loginForm">
+     
+      <div data-ng-show="error" class="text-center text-danger">
+       <label data-ng-bind="error"></label>
+     </div>
+     <div class="form-group  m-b-20" data-ng-class="{ 'has-error': loginForm.username.$touched && loginForm.username.$invalid }">
+      <label for="username" class="c-gray">Email</label>
+      <input type="text" name="username" id="username" class="form-control input-lg" data-ng-model="vm.credentials.email"  required  />
+      <span data-ng-show="loginForm.username.$touched && loginForm.username.$error.required" class="help-block">Email is required.</span>
+      <span data-ng-show="loginForm.username.$touched && loginForm.username.$invalid && loginForm.username.$error.pattern" class="help-block">Not valid Email Address.</span>
+    </div>
+    <div class="form-group m-b-40" data-ng-class="{ 'has-error': loginForm.password.$touched && loginForm.password.$error.required }">
+      <label for="password" class="c-gray">Password</label>
+      <input type="password" name="password" id="password" class="form-control input-lg" data-ng-model="vm.credentials.password" required  />
+      <span data-ng-show="loginForm.password.$touched && loginForm.password.$error.required" class="help-block">Password is required.</span>
+    </div>
+    <div class="text-center m-b-20">
+     <button type="submit" data-ng-disabled="loginForm.$invalid || vm.dataLoading" class="btn btn-block btn-lg btn-theem l-btn">Login</button>
+     <a href="/#!/password/forgot" class="text-link c-l-gray">Forgot Password?</a>
+	                <!--  <p class="m-t-10">New User?
+                 <a class="text-link c-l-gray" href="/#!/companySignup"> Sign up now </a></p> -->
+               </div>
+          
+           </form>
+	  </div>
+	  </div>
+         </div>  <!-- end main -->
+       </div> <!-- end row -->

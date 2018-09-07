@@ -1,0 +1,33 @@
+  <!--  start left tab nav -->
+  <div class=" p-l-0 left-nav" data-ng-controller="HeaderController as vm" remove-on-init ng-show="vm.authentication.user">
+    <div>
+      <ul class="no-padding">
+        <div class="p-15 m-b-5">
+          <a href="/#!/dashboard"><img src="/modules/core/client/img/brand/logo_inner.png"></a>
+
+        </div>
+
+
+        <li class="p-15"  ng-class='{"left-tab-active":vm.state.current.name==item.state}' ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"  ui-sref-active="active" ng-click="vm.goToState(item.state)">
+
+          <a class="{{item.icon}} f-24 c-black t-d-none" ui-sref="{{item.state}}" title="{{item.title}}" ></a>
+
+        </li>
+
+
+
+
+
+        <li class="p-15" ng-class='{"left-tab-active":vm.state.current.name=="help-center"}'>
+          <a class="glyphicon glyphicon-question-sign f-24 c-black t-d-none" title="Help" href="/#!/help-center"></a>
+        </li>
+        <li class="p-15">
+          <a href="/api/auth/signout" class="glyphicon glyphicon-off f-24 c-black t-d-none" target="_self" title="Sign Out"></a>
+        </li>
+      </ul>
+      <div class="side-tab-user-img p-15">
+       <img width="35px"  ngf-src="(vm.authentication.user && vm.authentication.user.profileImageURL!=='')?'/' +vm.authentication.user.profileImageURL:'/modules/core/client/img/user_img.png'" class="img-circle" ngf-drop>
+     </div>
+   </div>
+ </div>
+ <!-- end left tab nav  class="img-circle"-->

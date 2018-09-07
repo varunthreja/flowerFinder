@@ -1,0 +1,283 @@
+<style>
+  .product-curosal  {position:relative;}
+  .delbuthove { 
+    background: #fff none repeat scroll 0 0;
+    float: right;
+    padding: 6px;
+    position: relative;
+    right: 0;
+    top: 20px;
+    border:1px solid #f00;
+
+  }
+
+  .delbuthove .fa {color:#f00; font-size:25px;}
+
+
+  .modal-dialog {
+    width: 800px !important;
+  }
+
+  .modal-dialog div.container-fluid {
+    margin: 0 !important;
+  }
+
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+</style>
+
+<div class="container-fluid m-l-75"> <!-- main container -->
+
+  <div class="row" style=" margin: 15% 42%;
+  position: absolute;
+  z-index: 2147483647;" ng-show="vm.loading">
+
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+</div>
+<div class="row"> <!--start row -->  
+
+  <!--  start center -->
+  <div class="col-md-12 bg-white">
+    <div class="dash-head-top row">
+      <div class="col-md-6">
+        <p class="f-28 bitter-bold m-l-20 c-x-l-gray pull-left"><strong>{{(vm.plant._id)?'Update':'Add'}} Plant</strong></p>
+      </div>
+      <div class="col-md-6">
+        <a class="" ng-if="!vm.isFromModal" href="#" data-ng-click="backState()"><i class="fa fa-arrow-left f-30 pull-right c-gray"></i></a>
+
+        <a class="" ng-if="vm.isFromModal" href="#" data-ng-click="vm.cancel()"><i class="fa fa-close f-30 pull-right c-gray"></i></a>
+
+      </div>
+    </div>
+  </div>
+  <form class="m-l-20" role="form" name="managePlantForm" autocomplete="off" novalidate>	
+    <div class="col-md-12 m-t-40 add-company" ng-init="showtab=1;">
+      <ul class="nav nav-tabs">
+        <li ng-class="{active: showtab == 1}"><a href="javascript:void(0);" ng-click="showtab=1" data-toggle="tab">Plant Info</a></li>
+        <li ng-class="{active: showtab == 2}"><a href="javascript:void(0);" ng-click="showtab=2;"   data-toggle="tab">More</a></li>
+
+
+      </ul>
+    </div>
+    <div class="col-md-12 m-t-40 clearfix">
+      <div id="myTabContent" class="tab-content col-md-12 m-t-40">
+        <div class="tab-pane active in" id="plant_info" ng-show="showtab == 1">
+          <div class="col-md-4 col-sm-6">
+            <div class="form-group m-b-15 required" data-ng-class="{ 'has-error': managePlantForm.commonName.$touched && managePlantForm.commonName.$invalid }">
+             <label data-ng-class="(((vm.plant._id && vm.plant.scientificName) || vm.plant.commonName) ? 'c-gray':'error')" for="input">Common Name</label>
+             <input id="commonName" ng-model="vm.plant.commonName" type="text" class="form-control input-lg" name="commonName" ng-required="(vm.plant._id && vm.plant.scientificName)?0:1" data-ng-maxlength = "32" data-ng-minlength="2">
+             <!-- data-ng-pattern="/^[a-zA-Z` ']+$/" -->
+
+             <span data-ng-show="managePlantForm.commonName.$touched && managePlantForm.commonName.$invalid && managePlantForm.commonName.$error.pattern" class="help-block">Only letters, (`) and (') are allowed.</span>
+             <span data-ng-show="managePlantForm.commonName.$touched && managePlantForm.commonName.$invalid && (managePlantForm.commonName.$error.maxlength || managePlantForm.commonName.$error.minlength)" class="help-block">Common name must be between 2 and 32 characters long.</span>
+
+             <span data-ng-show="managePlantForm.commonName.$touched && managePlantForm.commonName.$invalid && managePlantForm.commonName.$error.required" class="help-block">Common name is required.</span>
+
+
+           </div>
+           <div class="form-group m-b-15 required" data-ng-class="{ 'has-error': managePlantForm.scientificName.$touched && managePlantForm.scientificName.$invalid }">
+             <label data-ng-class="((vm.plant.scientificName) ? 'c-gray':'c-gray')" for="input">Scientific Name</label>
+             <input id="scientificName" name="scientificName" ng-model="vm.plant.scientificName" type="text" class="form-control input-lg" 
+             data-ng-maxlength = "100" data-ng-minlength="2">
+
+             <span data-ng-show="managePlantForm.scientificName.$touched && managePlantForm.scientificName.$invalid && managePlantForm.scientificName.$error.pattern" class="help-block">Only letters, (`) and (') are allowed.</span>
+             <span data-ng-show="managePlantForm.scientificName.$touched && managePlantForm.scientificName.$invalid && (managePlantForm.scientificName.$error.maxlength || managePlantForm.scientificName.$error.minlength)" class="help-block">Scientific name must be between 2 and 100 characters long.</span>
+
+           </div>
+
+           <div class="form-group">
+             <label for="careTips">Description</label>
+             <textarea id="description" name="description" class="form-control input-lg" data-ng-model="vm.plant.description"></textarea>
+           </div>
+
+
+           <div class="form-group">
+             <label for="careTips" >Care Tips</label>
+             <textarea id="careTips" name="careTips" class="form-control input-lg" data-ng-model="vm.plant.careTips"></textarea>
+           </div>
+
+         </div>
+
+         <div class="col-md-4 col-sm-6">
+
+
+
+           <div class="form-group" data-ng-class="{ 'has-error': managePlantForm.region.$touched && managePlantForm.region.$invalid }">
+            <label for="region" data-ng-class="((vm.plant.region) ? 'c-gray':'c-gray')">Regions</label>
+
+            <tags-input ng-model="vm.plant.region" add-on-comma="0" placeholder="add a region" add-on-space="1" allowed-tags-pattern="^[a-zA-z0-9-,]+$">
+              <auto-complete source="loadTags($query)"></auto-complete>
+            </tags-input>
+            <!-- on-invalid-tag="vm.invalidTag($tag)"  allowed-tags-pattern="/^[a-zA-Z0-9-]*$/" on-invalid-tag="vm.invalidTag($tag)" -->
+
+          </div>
+
+
+    <!-- <div class="form-group product-curosal">
+     <div style="height: 200px">
+      <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+        <div  style="height: 200px" uib-slide ng-repeat="slide in slides track by slide.id" index="$index">
+          <div  class="delbuthove">
+            <a href="#" ng-click="vm.removeImage(slide)"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+            
+
+          </div>
+          <img height="200" width="150"  ng-mouseover="isDelete(slide.id)" ng-mouseout="isDelete('')" ng-src="{{slide.image}}" style="margin:auto;">
+          <div class="carousel-caption">
+            <h4>Slide {{slide.id}}</h4>
+            <p>{{slide.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="form-group">
+    <img width="300" height="200" ng-if="vm.plant.pictures.length>0" src="/{{vm.plant.pictures[0]}}">
+
+    
+  </div>
+
+  <div class="form-group">
+    <label for="region" class="c-gray">Pictures</label>
+    <div class="up-buttons">
+      <div ngf-drop ngf-select ng-model="vm.files" name="files" class="drop-box" accept="image/*" ngf-multiple="false">Select or drop</div>
+    </div>
+
+    <br>Selected Files:
+    <img height="100" width="150" ngf-src="vm.files">
+   <!--  <ul>
+      <li ng-repeat="f in vm.files" style="font:smaller">
+        {{f.name}}: <img height="100" width="150" ngf-src="f || '/thumb.jpg'">
+      </li>
+    </ul> -->
+
+  </div>  
+
+
+</div>
+
+</div>
+</div>
+
+<div id="myTabContent" class="tab-content col-md-12 m-t-40">
+  <div class="tab-pane active in" id="more_info" ng-show="showtab == 2">
+
+    <div class="col-md-4 col-sm-6">
+     <div class="form-group clearfix">
+
+       <label for="careTips" >More options </label>
+       <input type="text" name="name" uib-typeahead="item as item.name for item in moreOptions | filter:{name:$viewValue}" class="form-control" typeahead-show-hint="true" typeahead-min-length="0" placeholder="Name" data-ng-model="vm.item.name" maxlength="40" class="form-control input-sm">
+     </div>
+     <div class="form-group clearfix">
+       <div class="clear clearfix"></div>
+       <input placeholder="Value" type="text" name="" data-ng-model="vm.item.value" class="form-control input-sm"> <button type="button" ng-disabled="!vm.item.name || !vm.item.value" ng-click="vm.addRemoveMoreOption(1,vm.item);" class="btn btn-primary pull-right">Add &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+     </div>
+
+
+     <div class="form-inline from-manage clearfix" ng-repeat="item in vm.plant.moreOptions">
+       <label for="height" class="col-md-2 col-sm-2 no-padding" style="overflow-wrap: break-word;">{{item.name}}</label>
+       <input type="text" name="{{item.name}}" class="form-control col-md-7 "  data-ng-model="vm.plant.moreOptions[$index]['value']">
+
+       <a class="pull-right " href="javascript:void(0)"  ng-click="vm.addRemoveMoreOption(0,item);">
+         <i class="fa fa-trash" aria-hidden="true"></i>
+
+       </a>
+     </div>
+
+   </div>
+
+   <div class="col-md-4 col-sm-6">
+     <div class="form-group clearfix">
+
+       <label for="careReminders" >Care reminders </label>
+       <input type="text" name="name"  class="form-control"  placeholder="Name" data-ng-model="vm.reminder.name" class="form-control input-sm" maxlength="40">
+       <br>
+       <textarea class="form-control clearfix" placeholder="description" data-ng-model="vm.reminder.description"></textarea>
+     </div>
+     <div class="form-group clearfix">
+       <div class="clear clearfix"></div>
+       <!-- <select class="form-control" ng-model="vm.reminder.type">
+         <option value="daily" ng-selected="true">Daily</option>
+         <option value="weekly">Weekly</option>
+         <option value="monthly">Monthly</option>
+       </select> -->
+       <select class="form-control"  id="reminderOptions" class="form-control input-lg" ng-model="vm.reminder.type" ng-options="v.name as v.name  for v in vm.allReminders" ng-disabled="false" ng-change="vm.checkIfOther()">
+       </select>
+
+       <!-- <div style="display:inline-block; min-height:290px;">
+        <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="dateOptions"></div>
+      </div> -->
+
+      <br>
+      <div class="input-group" ng-if="vm.isCustomReminder">
+        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-change="vm.timeUpdate()" />
+        <span class="input-group-btn" style="vertical-align: top !important;">
+          <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+        
+      </div>
+
+      <div class="input-group" ng-if="vm.isCustomReminder">
+
+        <div uib-timepicker ng-model="vm.reminder.customDateTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+      </div>
+
+      <br>
+
+      <button type="button" ng-disabled="!vm.reminder.name || !vm.reminder.type" ng-click="vm.addRemoveMoreReminder(1,vm.reminder);" class="btn btn-primary pull-right">Add &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+    </div>
+
+
+    <div class="form-inline from-manage clearfix" ng-repeat="item in vm.plant.careReminders">
+
+
+     <label style="overflow-wrap: break-word;" for="height" class="col-md-4 col-sm-2 no-padding">{{item.name}}</label>
+     <label for="height" class="col-md-2 col-sm-2 no-padding">{{item.type}}</label>
+     <label for="height" class="col-md-5 col-sm-2 no-padding word-wrap-lable">{{item.description}}</label>
+     <!--  <input type="text" name="{{item.name}}" class="form-control col-md-7 "  data-ng-model="vm.plant.careReminders[$index]['value']"> -->
+
+     <a class="pull-right " href="javascript:void(0)"  ng-click="vm.addRemoveMoreReminder(0,item);">
+       <i class="fa fa-trash" aria-hidden="true"></i>
+
+     </a>
+   </div>
+
+ </div>
+
+
+</div>
+
+</div>
+</div>
+
+<div class="col-md-12">
+  <div class="col-md-6">
+    <div class="text-center">
+     <button type="reset" ng-click="vm.resetManagePlantForm()" ng-show="!vm.plant._id" class="btn m-t-20 w-150 m-r-10 btn-org l-btn">Reset</button>
+
+     <button type="button" ng-click="backState()" ng-show="vm.plant._id" class="btn btn-default m-t-20 w-150 m-r-10 btn-org l-btn">Cancel</button>
+
+     <input data-ng-disabled="managePlantForm.$invalid" value="{{(vm.plant._id)?'Update':'Save'}}" ng-click="vm.update(managePlantForm.$valid)" ui-event="{reset: 'reset(managePlantForm)'}" type="button" class="btn m-t-20 w-150 btn-theem l-btn"/>
+
+
+   </div>
+ </div>
+</div>
+
+</form>
+
+
+
+</div><!--start row -->
+
+
+</div><!-- main container -->

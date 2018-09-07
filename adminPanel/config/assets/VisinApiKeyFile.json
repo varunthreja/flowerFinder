@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "unique-cinema-152304",
+  "private_key_id": "a3c564da6841300a79257169306eaee63745aa58",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5jKDf4rTnFZ3h\nUh3htwphdlfdAygAIyxtuk03trBY7/8/RATODWD/ju4t71cIgjNO5ozCYtO5OxmT\n/GIu5ViRux019zlGq+Lziu9kJHM8xkzvlDwdJv5p1QFafBFSrWC9Ffiv/0GF59mQ\n4cNId6/uxN/ZWYHTL1nIS+Q825QyTYKlo7AsQ5i+xsEAWBiGfMRi4oo5o3BIaIJf\nJgSDnZ09wWi5/oFzJtGqhI2SANEQINv9vzEVZW7OAciyxxwkV9y/YfjIqcYEW95l\nX9FXXXO9jc6r+W+cPC0cxgOI1NdDZcfn7GHljHALMW7u0bfZBCg/uqui1j3Mx4Lk\nQE1rspVLAgMBAAECggEAImhimMHYnBWVHmh05BtmUGZ6qqBgNY5QOdTXZuJ41zVC\nFwBNB8zRVPKzVk9Qy2Ihk5sLNSzQaEP+XUPrDRk4kGWraAt9Uo6jWlhERkTAHeAD\n+lV5xEor2YJHavkg2T0PeGDvqetiwisZXFWROgn/1P4rKIoBmiDovEzeeS6az6zh\nD9aPTOcRXVxjePjFMttK17+JP8xTMzOqlKvCycmYpkdfjIfH8id9jjC9r8MsJ0uW\nKlVcWgs6YQdhPvhU+bYvGAWgSGEa+sa6ovzEFgjEIKKfk9j7RUCbZF7SfbEybhdq\nSYGjeFFOAWzkSSBIzU0376OV7GYVjct1LAywo3oa6QKBgQDh8wIQNlEvwg16u9DQ\nv5i0zcWRplFQ9dbgqNQoh0RxDLEhwLX9c4s8I/tZoM3glLt8HD6g6AKPcypH/8wZ\nuAP1mA4kUBKbC3JyA+TWlZLELpY1U2TnEZAvhiflXDmikIv7nzzLlJ5q9ys0YNbq\nt5VzQFP0gh92fYk2sgPAniqqRwKBgQDSOhtVh3m+2/PA9lodK7evCrWwx5zMBXmE\nYghQBRppWGQY+Gmj9H9XpNzqteIzLysJWTkjpKSFvW4RXVGryGtk7UzJtPQ0DcBB\nDnoNFml38GWdoiBmn1wpop67TnbC4TJN2tsWHe/NtGR6gcAIOdiYNIP7xzWsdFv1\nH/ntwqq63QKBgDHwePNGXhlVJY+L9XI99q13kYRIo05ml7CeAA5ZH1pxOLFCG7dC\nE3MebM55iSdrGCktQPZlcTNte9ngAqdokY91pSKHhCU6mXfzvl9jPcYYmeB9Zx7f\nNeQbHbRG9wIkOpxJrLE+TulLagQwpy/HlcOcYzH2lKemxW4OWF/5VWq/AoGBAJ7V\nDg/Z0o70Cb9RoZYGkLosgke1GO9Ad6Yglx02LdVH1iDTlqUsNgYW5l5i2ytGyOJA\nSh5252KwU3fFJM6AFzvi2jBPim3Fseq1MFuxAjB/LZcihg5i+rPuTLVBvBLTKDmQ\nUBTuu16Um5G/dEICynV8v/c7dH7+Tvftl9weRvX1AoGAcPVgUrLN9slgkF9D0sKW\n5r+9vte2e9qq6wsJYfXfuliTkwR1oCd9OUU6WQ2DFN78Dqknk7i5eQ48ZFOHYB7D\nIGltJgBEOiGaAuOAIt8q8dh4B2GAGWfTy73tCGUtBJLmY915IiLxuXdqmlzV/5zO\nTMDIb1/golHi0Q5iHYwRt1o=\n-----END PRIVATE KEY-----\n",
+  "client_email": "kudzuapp@unique-cinema-152304.iam.gserviceaccount.com",
+  "client_id": "110842607844568886004",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kudzuapp%40unique-cinema-152304.iam.gserviceaccount.com"
+}

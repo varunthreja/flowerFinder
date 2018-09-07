@@ -1,0 +1,144 @@
+<div class="container-fluid m-l-75"> <!-- main container -->
+
+
+  <div class="row" style=" margin: 15% 42%;
+  position: absolute;
+  z-index: 2147483647;" ng-show="vm.loading">
+  
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+</div>
+<div class="row"> <!--start row -->  
+
+  <!--  start center -->
+  <div class="col-md-12 bg-white">
+    <div class="dash-head-top row">
+      <div class="col-md-6">
+        <p class="f-28 bitter-bold m-l-20 c-x-l-gray pull-left"><strong>{{(vm.user._id)?'Update':'Add'}} User</strong></p>
+      </div>
+      <div class="col-md-6">
+        <a class="" href="#" data-ng-click="backState()"><i class="fa fa-arrow-left f-30 pull-right c-gray"></i></a>
+      </div>
+    </div>
+  </div>
+  <form class="m-l-20" role="form" name="manageUserForm" data-ng-submit="return;" ui-event="{reset: 'reset(manageUserForm)'}" autocomplete="off" novalidate>	
+   <div class="col-md-12 m-t-40 clearfix">
+    <div class="col-md-4">
+      <div class="form-group m-b-15 required" data-ng-class="{ 'has-error': manageUserForm.firstName.$touched && manageUserForm.firstName.$invalid }">
+       <label data-ng-class="((vm.user.firstName) ? 'c-gray':'error')" for="input">First Name</label>
+       <input id="firstName" ng-model="vm.user.firstName" type="text" class="form-control input-lg" name="firstName" required data-ng-maxlength = "32" data-ng-minlength="2" data-ng-pattern="/^[a-zA-Z`']+$/">
+
+       <span data-ng-show="manageUserForm.firstName.$touched && manageUserForm.firstName.$invalid && manageUserForm.firstName.$error.pattern" class="help-block">Only letters, (`) and (') are allowed.</span>
+       <span data-ng-show="manageUserForm.firstName.$touched && manageUserForm.firstName.$invalid && (manageUserForm.firstName.$error.maxlength || manageUserForm.firstName.$error.minlength)" class="help-block">First name must be between 2 and 32 characters long.</span>
+
+       <span data-ng-show="manageUserForm.firstName.$touched && manageUserForm.firstName.$invalid && manageUserForm.firstName.$error.required" class="help-block">First name is required.</span>
+
+
+     </div>
+     <div class="form-group m-b-15 required" data-ng-class="{ 'has-error': manageUserForm.lastName.$touched && manageUserForm.lastName.$invalid }">
+       <label data-ng-class="((vm.user.lastName) ? 'c-gray':'error')" for="input">Last Name</label>
+       <input id="lastName" name="lastName" ng-model="vm.user.lastName" type="text" class="form-control input-lg" required
+       data-ng-maxlength = "32" data-ng-minlength="2" data-ng-pattern="/^[a-zA-Z`']+$/">
+       <span data-ng-show="manageUserForm.lastName.$touched && manageUserForm.lastName.$invalid && manageUserForm.lastName.$error.required" class="help-block">Last name is required.</span>
+       <span data-ng-show="manageUserForm.lastName.$touched && manageUserForm.lastName.$invalid && manageUserForm.lastName.$error.pattern" class="help-block">Only letters, (`) and (') are allowed.</span>
+       <span data-ng-show="manageUserForm.lastName.$touched && manageUserForm.lastName.$invalid && (manageUserForm.lastName.$error.maxlength || manageUserForm.lastName.$error.minlength)" class="help-block">Last name must be between 2 and 32 characters long.</span>
+     </div>
+
+
+     <div class="form-group" data-ng-class="{ 'has-error':manageUserForm.email.$touched && manageUserForm.email.$invalid }" >
+      <label for="email" data-ng-class="((vm.user.email) ? 'c-gray':'error')" >Email Address</label>
+      <input type="email" id="email" name="email" class="form-control input-lg" data-ng-model="vm.user.email" required data-ng-maxlength="50" data-ng-pattern="/^[_a-z0-9/+]+(\.[_a-z0-9/+]+)*@[a-z0-9-]+(\.[a-z0-9-])*(\.[a-z]{2,4})$/i" data-check-field-async="{key: (vm.user._id)?vm.user._id : 0, property: 'email', type: 'User'}">
+      <span data-ng-show="manageUserForm.email.$touched && manageUserForm.email.$invalid && manageUserForm.email.$error.required" class="help-block">Email Address is required.</span>
+      <span data-ng-show="manageUserForm.email.$touched && manageUserForm.email.$invalid && (manageUserForm.email.$error.maxlength)" class="help-block">Email Address must not be greater than 50 characters.</span>
+      <span data-ng-show="manageUserForm.email.$touched && manageUserForm.email.$invalid && manageUserForm.email.$error.pattern" class="help-block">Not valid Email Address.</span>
+      <span data-ng-show="manageUserForm.email.$touched && manageUserForm.email.__CHECKING_FIELD" >Checking Email...</span>
+      <span class="help-block" data-ng-show="manageUserForm.email.$touched && manageUserForm.email.$error.isDuplicatedEmail">Email already used</span>
+    </div>
+   <!--  <div class="form-group" data-ng-class="{ 'has-error': manageUserForm.phoneNumber.$touched && manageUserForm.phoneNumber.$invalid }">
+      <label for="phoneNumber" data-ng-class="((vm.user.firstName) ? 'c-gray':'error')">Phone Number</label>
+      <input name="phoneNumber" type="text" class="form-control input-lg" data-ng-model="vm.user.phoneNumber" required data-ng-maxlength="15" data-ng-minlength="9" data-ng-pattern = "/^[0-9]+$/">
+      <span data-ng-show="manageUserForm.phoneNumber.$touched && manageUserForm.phoneNumber.$invalid && manageUserForm.phoneNumber.$error.required" class="help-block">Phone number is required.</span>
+      <span data-ng-show="manageUserForm.phoneNumber.$touched && manageUserForm.phoneNumber.$invalid && (manageUserForm.phoneNumber.$error.maxlength || manageUserForm.phoneNumber.$error.minlength)" class="help-block">Phone number must be between 9 and 15 characters long.</span>
+      <span data-ng-show="manageUserForm.phoneNumber.$touched && manageUserForm.phoneNumber.$invalid && manageUserForm.phoneNumber.$error.pattern" class="help-block">Only numbers are allowed.</span>
+    </div> -->
+
+    <div ng-if="!vm.user._id" class="form-group" data-ng-class="{ 'has-error': manageUserForm.password.$touched && manageUserForm.password.$invalid }">
+      <label for="password" data-ng-class="((vm.user.password || vm.user._id) ? 'c-gray':'error')">Password</label>
+      <input type="password" id="password" name="password" class="form-control input-lg" data-ng-model="vm.user.password" ng-required="!vm.user._id" data-ng-maxlength = "32" data-ng-minlength="6" password={{vm.user.confirmPassword}}  uib-popover="{{vm.getPopoverMsg()}}" uib-popover-trigger="focus" password-validator >
+      <!-- password-verify="vm.user.confirmPassword" -->
+      <span data-ng-show="manageUserForm.password.$touched && manageUserForm.password.$invalid && manageUserForm.password.$error.required" class="help-block">Password is required.</span>
+      <span data-ng-show="manageUserForm.password.$touched && manageUserForm.password.$invalid && (manageUserForm.password.$error.maxlength || manageUserForm.password.$error.minlength)" class="help-block">Your password must be 6 to 32 characters long.</span>
+
+      <div ng-repeat="passwordError in passwordErrors">
+        <p class="help-block error-text" ng-show="manageUserForm.password.$error.requirements">{{passwordError}}</p>
+      </div>
+      <span data-ng-show="manageUserForm.password.$touched && manageUserForm.password.$invalid && manageUserForm.password.$error.passwordVerify" class="help-block">The passwords you entered do not match. Please try again.</span>
+    </div>
+
+
+    <div ng-if="!vm.user._id" class="form-group" data-ng-class="{ 'has-error': manageUserForm.confirmPassword.$touched && manageUserForm.confirmPassword.$invalid }">
+      <label for="confirmPassword" data-ng-class="(((vm.user.confirmPassword || vm.user._id ) && (!vm.user.password || vm.user.confirmPassword )) ? 'c-gray':'error')">Confirm Password</label>
+      <input name="confirmPassword" type="password" data-ng-model="vm.user.confirmPassword"  class="form-control input-lg" password-verify="vm.user.password" ng-required="!vm.user._id || vm.user.password">
+      <span data-ng-show="manageUserForm.confirmPassword.$touched && manageUserForm.confirmPassword.$invalid && manageUserForm.password.$error.required" class="help-block">Confirm Password is required.</span>
+      <span data-ng-show="manageUserForm.confirmPassword.$touched && manageUserForm.confirmPassword.$invalid && manageUserForm.confirmPassword.$error.passwordVerify" class="help-block">The passwords you entered do not match. Please try again.</span>
+    </div>
+    
+
+    <div class="form-group">
+      <div class="col-md-12 m-b-10 clearfix" class="c-gray"> Select User Type </div>
+      <div class="col-md-6 col-sm-3 col-xs-6 clearfix" ng-if="vm.authentication.user.roles.indexOf('superadmin')>=0">
+        <div class="radio row">
+          <label class="fs-1-5-e">
+            <input type="radio" value="" name="userType" data-ng-checked="vm.getUserType()=='Admin'" id="pChart" data-ng-click="vm.userTypeSelect('admin')">
+            <span class="cr v-a-m"><i class="cr-icon fa fa-circle"></i></span>
+            <span class="check-lable">Admin</span> 
+          </label>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-3 col-xs-6 m-b-10 clearfix" ng-if="1">
+        <div class="radio row">
+          <label class="fs-1-5-e">
+            <input type="radio" name="userType" value="" data-ng-checked="vm.getUserType()=='HR'" id="cChart" data-ng-click="vm.userTypeSelect('hr')">
+            <span class="cr v-a-m"><i class="cr-icon fa fa-circle"></i></span>
+            <span class="check-lable">HR</span> 
+          </label>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-sm-3 col-xs-6 m-b-10 clearfix" ng-if="1">
+        <div class="radio row">
+          <label class="fs-1-5-e">
+            <input type="radio" name="userType" value="" data-ng-checked="vm.getUserType()=='QA'" id="cChart" data-ng-click="vm.userTypeSelect('qa')">
+            <span class="cr v-a-m"><i class="cr-icon fa fa-circle"></i></span>
+            <span class="check-lable">QA</span> 
+          </label>
+        </div>
+      </div>
+      
+
+
+    </div>
+    
+  </div>
+</div>
+<div class="col-md-4" ng-if="vm.authentication.user.roles.indexOf('admin')>0">
+  <div class="text-center">
+   <button type="reset" ng-show="!vm.user._id" class="btn m-t-20 w-150 m-r-10 btn-org l-btn">Reset</button>
+
+   <button type="button" ng-click="backState()" ng-show="vm.user._id" class="btn btn-default m-t-20 w-150 m-r-10 btn-org l-btn">Cancel</button>
+
+   <input data-ng-disabled="manageUserForm.$invalid" value="{{(vm.user._id)?'Update':'Create'}}" ng-click="vm.update(manageUserForm.$valid);" type="button" class="btn m-t-20 w-150 btn-theem l-btn"/>
+   
+
+ </div>
+
+</div>
+</form>
+
+
+
+</div><!--start row -->
+
+
+</div><!-- main container -->

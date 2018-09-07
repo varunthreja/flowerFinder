@@ -1,0 +1,123 @@
+<div class="container-fluid m-l-75"> <!-- main container -->
+
+	<div class="row" style=" margin: 15% 42%;
+	position: absolute;
+	z-index: 2147483647;" ng-show="vm.loading">
+	
+	<i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+</div>
+
+
+<div class="row" ng-init="vm.getAllRecognitions();"> <!--start row -->  
+	<!--  start center -->
+	<div class="col-md-12 bg-white">
+		<div class="dash-head-top row">
+			<p class="f-28 bitter-bold m-l-20 c-x-l-gray"><strong> Manage Recognitions</strong></p>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<p class="f-20 bitter-bold m-l-20 c-x-l-gray m-t-20"><strong>Recognitions list</strong></p>
+			</div>
+			<div class="col-md-6">
+				<form role="search" class="navbar-form pull-right m-t-20" ng-submit="vm.applyGlobalSearch()">
+					<div class="input-group admin-table-search m-r-10">
+						<!-- <input type="text" ng-model="search.firstName" name="q" placeholder="Search Recognition" class="form-control">
+						<div class="input-group-btn">
+							<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+							ng-click="applyGlobalSearch()"
+						</div>
+					-->
+
+					<input type="text" class="form-control" placeholder="Search text" name="searchTerm" ng-model="vm.globalSearchTerm" ng-keyup="vm.checkText()" required />
+					<div class="input-group-btn">
+						<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search" ></i></button>
+					</div>
+
+
+
+				</div>
+				<!-- <a href="/#!/admin/importRecognition" class="btn btn-default"> <i class="fa fa-upload"></i> Import Recognition</a> -->
+				<!-- <a href="/admin/createRecognition" class="btn btn-default"> <i class="fa fa-plus"></i> Add Recognition</a> -->
+			</form>
+		</div>
+	</div>
+	<div class="col-md-12 m-t-20">
+		<div style="margin-bottom: 20px;float: right;">
+			
+			<div class="form-group">
+				<label for="viewFilter"><strong>View :</strong></label>
+				
+				<select id="viewFilter" class="input-lg" ng-model="vm.viewFilter" ng-change="vm.viewFilteredItem();" ng-options="v.status as v.status  for v in vm.recognitionStatus">
+					<!-- <option value="All">All</option>
+					<option value="Not Recognized">Not Recognized</option>
+					<option value="Automated Recognition">Automated Recognition</option>
+					<option ng-selected="true" value="Pending Review">Pending Review</option>
+				
+				-->
+			</select>
+		</div>
+
+	</div>
+	<div class="table table-responsive">
+
+		<table ng-table="vm.tableParams" class="table" show-filter="false">
+			<tr class="c-pointer" ng-click="vm.redirectToEditItem(recognition._id)" ng-repeat="recognition in $data | filter: search" ng-init="currentNo =vm.tableParams.page()*vm.tableParams.count()-(vm.tableParams.count()-1)">
+
+				<td title="'Sr'">{{currentNo+$index}}</td>
+
+				<td title="'Req.No'">{{recognition.recognitionNo}}</td>
+
+				<td title="'Image'">
+					<img ng-src="/{{(recognition.recognitionThumbImageURL)?recognition.recognitionThumbImageURL:recognition.recognitionImageURL}}" height="50" width="50">
+				</td>
+
+
+				<td title="'User'" filter="{ 'userId.displayName': 'text'}" sortable="'userId.displayName'">
+					{{recognition.userId.displayName}}
+				</td>
+
+				<td title="'Plant'" filter="{ 'plantId.commonName': 'text'}" sortable="'plantId.commonName'">
+					{{(recognition.plantId.commonName)?recognition.plantId.commonName:recognition.plantId.scientificName}}
+				</td>
+
+
+				<td title="'Recognition Status'" filter="{ status:'text'}">
+					{{recognition.status}}
+				</td>
+
+				<td title="'Created At'" filter="{ created:'text'}" sortable="'created'">
+					{{recognition.created | date:'dd-MMM-yy hh:mm a'}}
+				</td>
+
+				<td title="'Updated At'" filter="{ updated:'text'}" sortable="'updated'">
+					{{recognition.updated | date:'dd-MMM-yy hh:mm a'}}
+				</td>
+
+
+				<td title="'Hr name'" filter="{ 'hrUserId.displayName': 'text'}" sortable="'hrUserId.displayName'">
+					{{(recognition.hrUserId)?recognition.hrUserId.displayName:''}}
+				</td>
+
+				<td title="'Action'">
+
+					<a ng-if="vm.authentication.user.roles.indexOf('hr')>=0" href="/admin/recognitions/{{recognition._id}}" class="m-r-10" title="Edit"> <i class="fa fa-pencil"></i></a>
+					<!-- <a ng-if="vm.authentication.user.roles.indexOf('hr')>=0" title="Delete" class="m-r-5" data-ng-click="deleteRecognition(recognition._id,1)" href="/testt"> <i class="fa fa-trash"></i></a> -->
+					<!-- <a ng-if="(vm.authentication.user.roles.indexOf('hr')>=0) && recognition.isDeleted" title="Re-Add" class="m-r-5" href="#" data-ng-click="deleteRecognition(recognition._id,0)"> <i class="fa fa-plus"></i></a> -->
+				</td>
+
+			</tr>
+		</table>
+
+		<div ng-if="vm.tableParams.total()==0 && !vm.loading">
+			No data found.
+		</div>
+
+	</div>    
+</div>
+
+</div>
+<!--  end center -->
+
+</div><!--end row --> 
+
+</div><!-- main container -->

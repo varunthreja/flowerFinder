@@ -1,0 +1,7 @@
+syntax: glob
+node_modules
+uploads
+bower_components
+public/dist
+build
+test.js.orig

@@ -1,0 +1,155 @@
+<div class="container-fluid m-l-75"> <!-- main container -->
+
+	<div class="row" style=" margin: 15% 42%;
+	position: absolute;
+	z-index: 2147483647;" ng-show="vm.loading">
+	
+	<i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+</div>
+
+
+<div class="row" ng-init="vm.getAllUsers();"> <!--start row -->  
+	<!--  start center -->
+	<div class="col-md-12 bg-white">
+		<div class="dash-head-top row">
+			<p class="f-28 bitter-bold m-l-20 c-x-l-gray"><strong> Manage Users</strong></p>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<p class="f-20 bitter-bold m-l-20 c-x-l-gray m-t-20"><strong>Users list</strong></p>
+			</div>
+			<div class="col-md-6">
+				<form role="search" class="navbar-form pull-right m-t-20" ng-submit="vm.applyGlobalSearch()">
+					<div class="input-group admin-table-search m-r-10">
+						<!-- <input type="text" ng-model="search.firstName" name="q" placeholder="Search User" class="form-control">
+						<div class="input-group-btn">
+							<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+							ng-click="applyGlobalSearch()"
+						</div>
+					-->
+
+					<input type="text" class="form-control" placeholder="Search text" name="searchTerm" ng-model="vm.globalSearchTerm" ng-keyup="vm.checkText()" required />
+					<div class="input-group-btn">
+						<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search" ></i></button>
+					</div>
+
+
+
+				</div>
+				<!-- <a href="/#!/admin/importUser" class="btn btn-default"> <i class="fa fa-upload"></i> Import User</a> -->
+				<a href="/admin/add-user" class="btn btn-default"> <i class="fa fa-plus"></i> Add User</a>
+			</form>
+		</div>
+	</div>
+	<div class="col-md-12 m-t-20">
+		<div style="margin-bottom: 20px;float: right;">
+			<span style="margin: 0 -23px 0 0; padding:0px 0 0;vertical-align: middle;"><strong>View :</strong></span>
+			<!-- <label class="checkbox-inline">
+				<input type="checkbox" ng-model="vm.viewFilter.isActive" ng-change="vm.viewFilteredItems();" /> Active
+			</label> -->
+			<div class="checkbox checkbox-inline ">
+				<label class="checkbox-inline" style="font-size: 1.5em">
+					<input type="checkbox" ng-model="vm.viewFilter.isActive" ng-change="vm.viewFilteredItems();" />
+					<span class="cr m-t-4"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span class="check-lable">Active</span> 
+				</label>
+			</div>
+
+			<div class="checkbox checkbox-inline">
+				<label style="font-size: 1.5em">
+					<input type="checkbox" ng-model="vm.viewFilter.isInactive" ng-change="vm.viewFilteredItems();" />
+					<span class="cr m-t-4"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span class="check-lable">InActive</span> 
+				</label>
+
+			</div>
+
+			<div class="checkbox checkbox-inline">
+				<label class="checkbox-inline" style="font-size: 1.5em">
+					<input type="checkbox" ng-model="vm.viewFilter.isDeleted" ng-change="vm.viewFilteredItems();" />
+					<span class="cr m-t-4"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span class="check-lable">Deleted</span> 
+				</label>
+			</div>			
+
+			<div class="checkbox checkbox-inline ">
+				<label class="checkbox-inline" style="font-size: 1.5em">
+					<input type="checkbox" ng-model="vm.viewFilter.isAll" ng-change="vm.viewFilteredItems();" />
+					<span class="cr m-t-4"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span class="check-lable">All</span> 
+				</label>
+			</div>
+
+			<div class="checkbox checkbox-inline ">
+				<label class="checkbox-inline" style="font-size: 1.5em">
+					<input type="checkbox" ng-model="vm.viewFilter.isIncludeAppUser" ng-change="vm.viewFilteredItems();" />
+					<span class="cr m-t-4"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+					<span class="check-lable">Include App User</span> 
+				</label>
+			</div>
+			
+		</div>
+		<div class="table table-responsive">
+
+			<table ng-table="vm.tableParams" class="table" show-filter="false">
+				<tr ng-repeat="user in $data | filter: search" ng-init="currentNo =vm.tableParams.page()*vm.tableParams.count()-(vm.tableParams.count()-1)">
+
+					<td title="'No'">{{currentNo+$index}}</td>
+
+					<td title="'FirstName'" filter="{ firstName: 'text'}" sortable="'firstName'">
+						{{user.firstName}}
+					</td>
+
+					<td title="'LastName'" filter="{ lastName: 'text'}" sortable="'lastName'">
+						{{user.lastName}}
+					</td>
+
+					<td title="'Email'" filter="{ email: 'text'}" sortable="'email'">
+						{{user.email}}
+					</td>
+
+
+					<!-- <td title="'Phone'" filter="{ phoneNumber: 'number'}" sortable="'phoneNumber'">
+						{{formatPhoneNumber(user.phoneNumber)}}
+					</td> -->
+
+
+					<td title="'User Type'" filter="{ userType:'text'}" sortable="'roles'">
+						{{vm.getUserType(user.roles)}}
+					</td>
+
+
+
+					<td title="'Action'">
+						<a ng-if="vm.canModified(user.roles)" data-toggle="buttons" id="status" class="btn-group m-r-5">
+							<label id="active{{user._id}}" ng-click="vm.changeStatus(user._id,1)" class="btn  btn-default btn-on btn-xs" ng-class="{'btn-success active': user.isActive}" >
+								<input type="radio" checked="checked" name="userStatus[]" ng-click="vm.changeStatus(user._id,1)" value="1">Active</label>
+								<label id="inactive{{user._id}}" ng-click="vm.changeStatus(user._id,0)" class="btn btn-default btn-off btn-xs" ng-class="{'btn-danger active': !user.isActive}">
+									<input type="radio" name="userStatus[]" ng-model="userstatus" value="0" ng-click="vm.changeStatus(user._id,0)">Inactive</label>
+								</a>
+								<a ng-if="vm.canModified(user.roles)" href="/admin/users/{{user._id}}" class="m-r-10" title="Edit"> <i class="fa fa-pencil"></i></a>
+
+
+								<a ng-if="vm.canModified(user.roles) && !user.isDeleted" title="Delete" class="m-r-5" href="#" data-ng-click="vm.changeDeleteStatus(user, true)"> <i class="fa fa-trash"></i></a>
+								<a ng-if="vm.canModified(user.roles) && user.isDeleted" title="Re-Add" class="m-r-5" href="#" data-ng-click="vm.changeDeleteStatus(user, false)"> <i class="fa fa-plus"></i></a>
+							</td>
+
+
+
+
+						</tr>
+					</table>
+
+						<!-- <div ng-if="tableParams.total()==0">
+							No data found.
+						</div> -->
+
+					</div>    
+				</div>
+
+			</div>
+			<!--  end center -->
+
+		</div><!--end row --> 
+
+</div><!-- main container -->

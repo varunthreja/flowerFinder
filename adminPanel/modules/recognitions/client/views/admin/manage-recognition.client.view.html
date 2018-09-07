@@ -1,0 +1,123 @@
+<div class="container-fluid m-l-75"> <!-- main container -->
+
+
+  <div class="row" style=" margin: 15% 38%;
+  position: absolute;
+  z-index: 2147483647;" ng-show="vm.loading">
+  
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+</div>
+<div class="row"> <!--start row -->  
+
+  <!--  start center -->
+  <div class="col-md-12 bg-white">
+    <div class="dash-head-top row">
+      <div class="col-md-6">
+        <p class="f-28 bitter-bold m-l-20 c-x-l-gray pull-left"><strong>{{(vm.recognition._id)?'Update':'Add'}} Recognition</strong></p>
+      </div>
+      <div class="col-md-6">
+        <a class="" href="#" data-ng-click="backState()"><i class="fa fa-arrow-left f-30 pull-right c-gray"></i></a>
+      </div>
+    </div>
+  </div>
+  <form class="m-l-20" role="form" name="manageRecognitionForm" data-ng-submit="return;" ui-event="{reset: 'reset(manageRecognitionForm)'}" autocomplete="off" novalidate>	
+   <div class="col-md-12 m-t-40">
+    <div class="col-md-4">
+      <div class="form-group m-b-15 required" class="c-gray">
+        <label class="c-gray" for="input">User Name</label>
+        <input disabled="true" id="firstName" ng-model="vm.recognition.userId.displayName" type="text" class="form-control input-lg" name="firstName">
+
+      </div>
+
+      <div class="form-group">
+       <label for="plantId">Update Recognition Plant  </label>
+       <span style="float: right;"> <a title="Create and Add plant" href="javascript:void(0)" ng-click="createAndPlant()"><i class="fa fa-plus-circle fa-2x"></i></a></span>
+
+
+       <!--   <input type="text" name="plantId" id="plantId" uib-typeahead="item as item.commonName for item in vm.filterPlants | filter:{commonName:$viewValue}" class="form-control" typeahead-show-hint="false" min-length="3" typeahead-min-length="3" placeholder="Name" data-ng-model="vm.plantName" class="form-control input-sm" ng-keyup="vm.searchPlants();" typeahead-on-select="vm.onSelect($item, $model, $label)"> -->
+
+       <angucomplete-alt id="plants_autocomplete"
+       placeholder="Search plants"
+       pause="400"
+       selected-object="vm.selectCallBack"
+       remote-url="/api/plants?pageNumber=1&perPageCount=200&searchText="
+       remote-url-data-field="data"
+       minlength="3"  
+       title-field="commonName"
+       remote-url-response-formatter="vm.searchResponseFormatter"
+       image-field="imageUrl"
+       input-class="form-control invite-input"
+       match-class="highlight"
+       initial-value="vm.selectedPlant"
+       input-changed="vm.inputChangedFn" 
+
+       />
+
+       <!--               input-changed="vm.inputChangedFn" remote-url-request-formatter="vm.searchPlants" -->
+
+       
+
+     </div>
+     <div class="form-group">
+       <div class="checkbox">
+         <label class="checkbox-inline" style="padding-left: 0 ;">
+          <input type="checkbox" ng-model="vm.invalidImage" ng-change="vm.checkIfInvalidImage();" />
+          <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+          <span>Invalid Image</span> 
+        </label>
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+     <label for="plantId">Status</label>
+
+     <select  id="viewFilter" class="form-control input-lg" ng-model="vm.recognition.status" ng-options="v.status as v.status  for v in vm.recognitionStatus" ng-disabled="true">
+        <!--  <option value="Not Recognized">Not Recognized</option>
+         <option value="Automated Recognition">Automated Recognition</option>
+         <option value="Sent To Botany">Sent To Botany</option> -->
+       </select>
+
+     </div>
+
+     <div class="form-group">
+       <label for="notes">Notes</label>
+       <textarea id="notes" name="notes" class="form-control input-lg" data-ng-model="vm.recognition.notes"></textarea>
+     </div>
+
+     
+
+
+   </div>
+
+   <div class="col-md-4">
+    <div class="form-group">
+     <img src="/{{vm.recognition.recognitionImageURL}}">
+
+     
+   </div>
+ </div>
+
+</div>
+
+
+<div class="col-md-4" ng-if="vm.initialStatus==='Pending Review' || vm.loginUserType!=='HR'">
+  <div class="text-center">
+   <button type="reset" ng-show="!vm.recognition._id" class="btn m-t-20 w-150 m-r-10 btn-org l-btn">Reset</button>
+
+   <button type="button" ng-click="backState()" ng-show="vm.recognition._id" class="btn btn-default m-t-20 w-150 m-r-10 btn-org l-btn">Cancel</button>
+
+   <input data-ng-disabled="manageRecognitionForm.$invalid" value="Update" type="button" ng-click="vm.update(manageRecognitionForm.$valid)" class="btn m-t-20 w-150 btn-theem l-btn"/>   
+
+ </div>
+
+</div>
+</form>
+
+
+
+</div><!--start row -->
+
+
+</div><!-- main container -->

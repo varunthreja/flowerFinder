@@ -1,0 +1,133 @@
+ <style type="text/css">
+  .glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+  }
+</style>
+<section style="padding: 0; width: 100% !important;">
+  <div data-ng-class="((charts.length > 0) ? 'container-fluid  bg-x-l-gray':'container-fluid ')"> <!-- main container -->
+    <div class="row"> <!--start row -->  
+      <div class="col-md-12 bg-white">
+       <div class="dash-head-top row">
+        <p class="f-28 bitter-bold m-l-20 c-x-l-gray pull-left"><strong>Charts</strong></p>
+        <a ng-show="authentication.user.chartPrivileges.indexOf('create')>0" href="/#!/import-chart" ng-click="removeLocalStoreChart()" class="pull-right"><i class="fa fa-plus-circle add-round-btn "></i></a>
+        <!-- 22 August 2016 -->
+        <!-- start msg -->
+        <ul class="navbar-top-msg navbar-right" uib-dropdown dropdown-append-to-body>
+          <li class="dropdown"> 
+            <a ng-click="setUserNotificationsRead();" class="dropdown-toggle" uib-dropdown-toggle href="#" aria-expanded="false">
+              <i class="fa fa-bell fa-fw"></i>
+            </a>
+            <div ng-show="notificationUnreadCount>0" class="msg-badge">{{notificationUnreadCount}}</div>
+            <ul uib-dropdown-menu class="dropdown-menu dropdown-menu-right dropdown-messages notification-li">
+              <li class="msg-img media m-b-0 border-b-1" ng-repeat="notification in notifications">
+               <div class="media-left">
+                <a href="#">
+                  <img width="35px" src="{{(notification.from.imageFile)?'/companies/'
+                  +'/'+authentication.user.folderName+'/'+notification.from.imageFile:'modules/core/img/user_img.png'}}" class="img-circle">
+                  <!-- <p>{{notification.text}}</p> -->
+
+                </a>
+              </div>
+
+              <div class="media-body">
+                <span class="pull-right">
+                  <span am-time-ago="{{notification.createdAt | cmDate}}"></span>
+                </span> 
+                <span class="media-heading Proxima-s-b"><!-- <strong>{{(message.from.displayName===authentication.user.displayName)?'me':message.from.displayName}}</strong> -->
+                  <strong>{{notification.from.displayName}}</strong></span>
+                  <p class=""><!-- @{{notification.from.username}} -->
+                    <span ng-hide="notification.isRead" class="pull-right  fa fa-envelope-o"></span>
+                  </p>
+                  <div id="messageDiv">{{notification.text}}</div>
+                </div>
+              </li>
+
+              <li class="media m-b-0 border-b-1" ng-if="notifications.length<=0">
+                <p>Not any notification yet.</p>
+              </li>
+
+            </ul><!-- /.dropdown-messages -->
+          </li>
+        </ul><!-- end msg --> 
+
+        <!-- start msg -->
+        <ul class="navbar-top-msg navbar-right" uib-dropdown dropdown-append-to-body>
+          <li class="dropdown"> 
+            <a class="dropdown-toggle" uib-dropdown-toggle href="#" aria-expanded="false">
+              <i class="fa fa-user fa-fw"></i>
+            </a>
+            <div ng-if="chartInvitations.length>0"  class="msg-badge">{{chartInvitations.length}}</div>
+            <ul uib-dropdown-menu class="dropdown-menu r-0 dropdown-menu-right dropdown-messages">
+              <li class="msg-img" ng-repeat="invitation in chartInvitations">
+                <a href="#">
+                  <img width="35px" data-ng-src="{{(invitation.fromUser.imageFile)?'/companies/'
+                  +'/'+authentication.user.folderName+'/'+invitation.fromUser.imageFile:'modules/core/img/user_img.png'}}" class="img-circle">
+                  <p>{{invitation.notifications[0].text}}</p>
+                  <button class="btn btn-default btn-sm accept" ng-click="updateInvitation(invitation,'accepted')"> Accept </button>
+                  <button ng-click="updateInvitation(invitation,'rejected')" class="btn btn-default btn-sm"> Reject </button>
+                  <!-- <span class="pull-right" am-time-ago="{{invitation.invitedAt | cmDate}}"></span> -->
+                </a>
+              </li>
+
+              <li class="msg-img" ng-if="chartInvitations.length<=0">
+                <p>No invitation found.</p>
+              </li>
+
+
+              <!-- <li ng-if="chartInvitations.length>10"  class="see-all">
+                <a class="text-center" href="#">
+                  <strong>See All</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </li> -->
+
+
+            </ul><!-- /.dropdown-messages -->
+          </li>
+        </ul><!-- end msg -->    
+
+        <!-- 22 August 2016 -->
+      </div>
+    </div>
+  </div><!--end row -->
+
+  <div class="row" style=" margin: 15% 42%;
+  position: absolute;
+  z-index: 2147483647;" ng-show="loading">
+
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+</div>
+
+<div class="row p-40"><!--start row -->	
+
+  <!--start search chart--> 
+  <div class="col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8">
+    <div class="form-group has-success has-feedback">
+      <input type="text" ng-model="searchChart.chartName" class="form-control input-lg bg-white" placeholder="Search by chart name">
+    </div>
+  </div>
+  <!--end search chart-->
+  <div>
+  <highchart id="chart1" config="chartConfig"></highchart>
+
+
+
+
+  <!-- check if user has no charts and show to create chart By LA 02 Feb,2016-->
+     <!--  <div data-ng-show='charts.length==0' class="col-md-12 center-first-chart">
+      <div class="text-center">
+        <p class="Proxima-s-b f-18">Create Your First Chart</p>
+        <p class="Proxima-s-b c-gray m-b-40">Nullam at odio non erat sagittis varius. Cars semper quam<br />sit amet augue lobortis aliquest. Proin pretium. </p>
+        <a href="/#!/import-chart" class="btn btn-theem f-16 Proxima-s-b w-180"> Create Chart</a>
+      </div>
+    </div> -->
+  </div><!--end row --> 
+</div><!-- main container -->
+<!-- Start Settings Popup -->
+
+
+<!-- End Import Data Popup -->
+
+
+</section>
