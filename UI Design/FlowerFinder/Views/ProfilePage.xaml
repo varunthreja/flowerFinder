@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" x:Class="FlowerFinder.ProfilePage" Title="Profile">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="#8AD85C" Padding="0,10,0,0">
+                <StackLayout HorizontalOptions="Center" IsVisible="true">
+                    <Image Source="DefaultFlowerImage.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout Padding="10" Spacing="10">
+                    <StackLayout>
+                        <Entry HeightRequest="40" Placeholder="First Name" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Entry HeightRequest="40" Placeholder="Last Name" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Entry HeightRequest="40" Placeholder="Email" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Entry HeightRequest="40" Placeholder="Phone Number" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Button BackgroundColor="#37A000" Text="Update" HorizontalOptions="Center" WidthRequest="100" TextColor="White" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

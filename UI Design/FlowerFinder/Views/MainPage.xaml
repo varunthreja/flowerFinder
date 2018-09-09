@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:FlowerFinder" x:Class="FlowerFinder.MainPage" MasterBehavior="Popover" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true">
+    <MasterDetailPage.Master>
+        <ContentPage xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true" BackgroundColor="#8AD85C" Title="Menu" Icon="ListIcon.png">
+            <ContentPage.Content>
+                <StackLayout>
+                    <StackLayout BackgroundColor="#37A000" Padding="0,10,0,10">
+                        <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="100" Margin="6,0,0,0" TextColor="White" Text="{x:Static IconsSet:Icon.FAUserCircleO}" />
+                        <Label Text="User Name" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="Large" />
+                    </StackLayout>
+                    <StackLayout Margin="0">
+                        <ListView x:Name="listViewMenuItems" HasUnevenRows="true" BackgroundColor="#8AD85C" ItemSelected="menuItemsListView_ItemSelected">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ViewCell.View>
+                                            <Frame BorderColor="Teal" BackgroundColor="#37A000" Margin="4,1,4,1">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <IconsSet:FontAwesomeLabel HorizontalOptions="Start" VerticalOptions="Center" FontSize="25" Margin="6,0,10,0" TextColor="White" Text="{Binding Icon}" />
+                                                    <Label TextColor="White" Font="Bold" VerticalTextAlignment="Center" Text="{Binding Title}" />
+                                                </StackLayout>
+                                            </Frame>
+                                        </ViewCell.View>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.Footer>
+                                <Label />
+                            </ListView.Footer>
+                        </ListView>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="EndAndExpand" Margin="0,0,0,10">
+                        <Label Text="Version 1.0" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

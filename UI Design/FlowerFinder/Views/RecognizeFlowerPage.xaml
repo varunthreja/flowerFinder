@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" x:Class="FlowerFinder.RecognizeFlowerPage" Title="Recognize">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout x:Name="CaptureOrChooseOptionsContainer" Orientation="Horizontal" IsVisible="false">
+                <Frame>
+                    <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="100" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FAPictureO}" />
+                </Frame>
+                <Frame>
+                    <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="100" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FACamera}" />
+                </Frame>
+            </StackLayout>
+            <StackLayout IsVisible="true" x:Name="imageContainer">
+                <StackLayout>
+                    <Frame Margin="0,0,0,15" WidthRequest="250">
+                        <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="200" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FAPagelines}" />
+                       <!-- <Image Source="ListIcon.png" HeightRequest="200" WidthRequest="250" />-->
+                    </Frame>
+                    <Button BackgroundColor="#37A000" Text="Recognize" TextColor="White" Clicked="Recognize_Clicked"/>
+                    <Button BackgroundColor="#37A000" Text="New Image" TextColor="White" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
