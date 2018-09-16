@@ -12,7 +12,7 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout Padding="10">
-                <IconsSet:FontAwesomeLabel HorizontalOptions="End" VerticalOptions="Center" FontSize="30" TextColor="#37A000" Text="{x:Static IconsSet:Icon.FAHeartO}" />
+                <IconsSet:FontAwesomeLabel x:Name="heartIcon" HorizontalOptions="End" VerticalOptions="Center" FontSize="30" TextColor="#37A000" Text="{x:Static IconsSet:Icon.FAHeartO}" />
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Text="Scientific Name : " HorizontalTextAlignment="Center" TextColor="Gray" />
                     <Label Text="test flower name" HorizontalTextAlignment="Center" TextColor="Gray" />

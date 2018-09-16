@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "631b679686c3a8822653ca951bb56f06458254b8"
+    "signature": "2dad9a124ba556712d3ca0d5b1687dfa698a0ed1"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,7 +10,10 @@
       "FlowerFinder/1.0.0": {
         "dependencies": {
           "NETStandard.Library": "2.0.1",
+          "Newtonsoft.Json": "11.0.2",
           "Rg.Plugins.Popup": "1.1.4.168",
+          "Xam.Plugin.Connectivity": "3.2.0",
+          "Xam.Plugin.Media": "4.0.1.5",
           "Xamarin.FFImageLoading.Forms": "2.4.3.840",
           "Xamarin.FFImageLoading.Svg": "2.4.3.840",
           "Xamarin.FFImageLoading.Transformations": "2.4.3.840",
@@ -26,6 +29,16 @@
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
+      "Newtonsoft.Json/11.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Plugin.Permissions/3.0.0.12": {
+        "runtime": {
+          "lib/netstandard2.0/Plugin.Permissions.dll": {}
+        }
+      },
       "Rg.Plugins.Popup/1.1.4.168": {
         "dependencies": {
           "Xamarin.Forms": "3.1.0.697729"
@@ -37,6 +50,23 @@
       "SkiaSharp/1.60.0": {
         "runtime": {
           "lib/netstandard1.3/SkiaSharp.dll": {}
+        }
+      },
+      "Xam.Plugin.Connectivity/3.2.0": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.0/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/netstandard1.0/Plugin.Connectivity.dll": {}
+        }
+      },
+      "Xam.Plugin.Media/4.0.1.5": {
+        "dependencies": {
+          "Plugin.Permissions": "3.0.0.12"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Plugin.Media.dll": {}
         }
       },
       "Xamarin.FFImageLoading/2.4.3.840": {
@@ -100,6 +130,20 @@
       "path": "netstandard.library/2.0.1",
       "hashPath": "netstandard.library.2.0.1.nupkg.sha512"
     },
+    "Newtonsoft.Json/11.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "path": "newtonsoft.json/11.0.2",
+      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+    },
+    "Plugin.Permissions/3.0.0.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VrYqI/ufk3bH6gTP1JJlLByjhS0CHu3riKmdozhX9/qXA9hlvLolmcqKJdyAqpzmrVC74m3ZtirUBIrBxvT1Lw==",
+      "path": "plugin.permissions/3.0.0.12",
+      "hashPath": "plugin.permissions.3.0.0.12.nupkg.sha512"
+    },
     "Rg.Plugins.Popup/1.1.4.168": {
       "type": "package",
       "serviceable": true,
@@ -113,6 +157,20 @@
       "sha512": "sha512-HoSNIZH54rinevEhLUWdeclr+H/QdmOp252+Tt07HTXwQyvRl9eW32ga/X7T56wsR855SKprb0RcnBPRCzlqSA==",
       "path": "skiasharp/1.60.0",
       "hashPath": "skiasharp.1.60.0.nupkg.sha512"
+    },
+    "Xam.Plugin.Connectivity/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZV45TaBTCJg7XQNEl3fPyyJcuMMhdDEQ6BCLc/5pMuTv38M226ER0WTu5sbmba8jlliDuzeRqkRFHwrGdWAgyg==",
+      "path": "xam.plugin.connectivity/3.2.0",
+      "hashPath": "xam.plugin.connectivity.3.2.0.nupkg.sha512"
+    },
+    "Xam.Plugin.Media/4.0.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a5l/M2Tl06BqBX/uhM/pr+q1jDkh2tRQr5Ne9rjAuD9VYn5STE+7kVFTzIUNPMnMr9PZLJkWP5WAr/tBN5oepw==",
+      "path": "xam.plugin.media/4.0.1.5",
+      "hashPath": "xam.plugin.media.4.0.1.5.nupkg.sha512"
     },
     "Xamarin.FFImageLoading/2.4.3.840": {
       "type": "package",

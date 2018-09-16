@@ -1,12 +1,12 @@
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/bin/Debug/netstandard2.0/FlowerFinder.deps.json
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/bin/Debug/netstandard2.0/FlowerFinder.dll
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/bin/Debug/netstandard2.0/FlowerFinder.pdb
-/Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/FlowerFinder.csprojResolveAssemblyReference.cache
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/App.xaml.g.cs
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/Views/ChangePasswordPage.xaml.g.cs
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/Views/FavouritePage.xaml.g.cs
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/Views/FlowerDetailsPage.xaml.g.cs
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/Views/ForgotPasswordPage.xaml.g.cs
+/Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/Views/LoadingIndicator.xaml.g.cs
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/Views/LoginPage.xaml.g.cs
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/Views/MainPage.xaml.g.cs
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/Views/ProfilePage.xaml.g.cs
@@ -21,3 +21,4 @@
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/XamlC.stamp
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/FlowerFinder.dll
 /Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/FlowerFinder.pdb
+/Users/devmaran/Documents/xamarin_project/FlowerFinder/FlowerFinder/obj/Debug/netstandard2.0/FlowerFinder.csprojResolveAssemblyReference.cache

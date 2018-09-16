@@ -2,22 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" x:Class="FlowerFinder.RecognizeFlowerPage" Title="Recognize">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <StackLayout x:Name="CaptureOrChooseOptionsContainer" Orientation="Horizontal" IsVisible="false">
-                <Frame>
+            <StackLayout x:Name="CaptureOrChooseOptionsContainer" Orientation="Horizontal" IsVisible="true">
+                <Frame x:Name="pickImageIcon" >
                     <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="100" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FAPictureO}" />
                 </Frame>
-                <Frame>
-                    <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="100" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FACamera}" />
+                <Frame x:Name="captureImageIcon">
+                    <IconsSet:FontAwesomeLabel  HorizontalOptions="Center" VerticalOptions="Center" FontSize="100" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FACamera}" />
                 </Frame>
             </StackLayout>
-            <StackLayout IsVisible="true" x:Name="imageContainer">
+            <StackLayout IsVisible="false" x:Name="ShowImageContainer">
                 <StackLayout>
-                    <Frame Margin="0,0,0,15" WidthRequest="250">
-                        <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="200" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FAPagelines}" />
-                       <!-- <Image Source="ListIcon.png" HeightRequest="200" WidthRequest="250" />-->
+                    <Frame Margin="5">
+                        <!--<IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="200" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FAPagelines}" />-->
+                       <Image x:Name="image" Source="ListIcon.png" HeightRequest="200" WidthRequest="250" />
                     </Frame>
-                    <Button BackgroundColor="#37A000" Text="Recognize" TextColor="White" Clicked="Recognize_Clicked"/>
-                    <Button BackgroundColor="#37A000" Text="New Image" TextColor="White" />
+                    <Button Margin="0,15,0,0" BackgroundColor="#37A000" Text="Recognize" TextColor="White" Clicked="btnRecognize_Clicked"/>
+                    <Button BackgroundColor="#37A000" Text="New Image" TextColor="White" Clicked="btnNewPicture_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

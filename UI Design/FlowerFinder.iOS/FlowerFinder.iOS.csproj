@@ -149,6 +149,10 @@
     <ImageAsset Include="Assets.xcassets\DefaultFlowerImage.imageset\flar%401x.png" />
     <ImageAsset Include="Assets.xcassets\DefaultFlowerImage.imageset\flar%402x.png" />
     <ImageAsset Include="Assets.xcassets\DefaultFlowerImage.imageset\flar%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\userprofil%401x.png" />
+    <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\userprofil%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\userprofil%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -167,6 +171,15 @@
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.1.4.168</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>4.0.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Connectivity">
+      <Version>3.2.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -180,6 +193,7 @@
     <Folder Include="Assets.xcassets\ListIcon.imageset\" />
     <Folder Include="Assets.xcassets\Logout.imageset\" />
     <Folder Include="Assets.xcassets\DefaultFlowerImage.imageset\" />
+    <Folder Include="Assets.xcassets\ProfileImage.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\FontAwesome.otf" />

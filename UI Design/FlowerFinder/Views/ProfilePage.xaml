@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" x:Class="FlowerFinder.ProfilePage" Title="Profile">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" x:Class="FlowerFinder.ProfilePage" Title="Profile">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout BackgroundColor="#8AD85C" Padding="0,10,0,0">
                 <StackLayout HorizontalOptions="Center" IsVisible="true">
-                    <Image Source="DefaultFlowerImage.png" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80" />
+                    <ff:CachedImage x:Name="profileImage" Source="ProfileImage.png" WidthRequest="100" HeightRequest="100">
+                        <ff:CachedImage.Transformations>
+                            <ffTransformations:RoundedTransformation Radius="240" />
+                        </ff:CachedImage.Transformations>
+                    </ff:CachedImage>
                 </StackLayout>
             </StackLayout>
             <StackLayout>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Plugin.Media;
 using UIKit;
 
 namespace FlowerFinder.iOS
@@ -24,6 +25,7 @@ namespace FlowerFinder.iOS
         {
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             Rg.Plugins.Popup.Popup.Init();
+            CrossMedia.Current.Initialize();
 
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
