@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:custom="clr-namespace:FlowerFinder" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" x:Class="FlowerFinder.LoginPage" Title="Sign In">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#37A000</Color>
+            <Color x:Key="buttonTextColor">#FFFFFF</Color>
+            <Color x:Key="LogoColor1">#BD4F55</Color>
+            <Color x:Key="LogoColor2">#3C668F</Color>
+            <Color x:Key="LogoColor3">#AFAF37</Color>
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <OnPlatform x:Key="TitleEnable" x:TypeArguments="x:Boolean" Android="true" iOS="true" WinPhone="false" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="#8AD85C" Padding="0,10,0,10">
+                <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="100" Margin="6,0,0,0" TextColor="White" Text="{x:Static IconsSet:Icon.FAPagelines}" />
+                <Label Text="Flower Finder" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="Large" />
+            </StackLayout>
+            <ScrollView>
+                <StackLayout Padding="10" VerticalOptions="Center" Spacing="15">
+                    <StackLayout>
+                        <custom:CustomEntry x:Name="email" Margin="0,20,0,0" BorderWidth="1" CornerRadius="5" IsCurvedCornersEnabled="True" BorderColor="{StaticResource primary}" FontSize="17" HeightRequest="50" Placeholder="Email" TextColor="Black"
+                            FontAttributes="Bold" WidthRequest="100" />
+                    </StackLayout>
+                    <StackLayout>
+                        <custom:CustomEntry x:Name="password" BorderWidth="1" IsPassword="true" CornerRadius="5" IsCurvedCornersEnabled="True" BorderColor="{StaticResource primary}" FontSize="17" HeightRequest="50" Placeholder="Password" TextColor="Black"
+                            FontAttributes="Bold" WidthRequest="100" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Button BackgroundColor="{StaticResource primary}" Text="Login" TextColor="White" Clicked="btnLogin_Clicked" />
+                    </StackLayout>
+                    <StackLayout x:Name="forgotPasswordBox">
+                        <Label Text="Forgot Your Password?" TextColor="#007EF6" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label TextColor="{StaticResource primary}" Text="Or" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Button BackgroundColor="{StaticResource primary}" Text="Register Now" TextColor="White" Clicked="btnSignUp_Clicked" />
+                    </StackLayout>
+                    <StackLayout x:Name="continueWithoutLoginBox">
+                        <Label Text="Countinue Without Sining Up" TextColor="#007EF6" HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

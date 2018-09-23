@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" x:Class="FlowerFinder.FlowerDetailsPage" Title="Recognize Result">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="#8AD85C" Padding="0,10,0,0">
+                <StackLayout x:Name="recongnizedFlowerImageContainer" Orientation="Horizontal" HorizontalOptions="Center" IsVisible="true">
+                    <StackLayout>
+                        <Label Text="Image Sent" TextColor="White" HorizontalTextAlignment="Center" Font="Bold" />
+                        <ff:CachedImage x:Name="flowerImageSent" Source="DefaultFlowerImage.png" ErrorPlaceholder="Loading.gif" LoadingPlaceholder="Loading.gif" WidthRequest="80" HeightRequest="80">
+                            <ff:CachedImage.Transformations>
+                                <ffTransformations:RoundedTransformation Radius="240" />
+                            </ff:CachedImage.Transformations>
+                        </ff:CachedImage>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Orignal Image" TextColor="White" HorizontalTextAlignment="Center" Font="Bold" />
+                        <ff:CachedImage x:Name="orignalFlowerImage" Source="DefaultFlowerImage.png" ErrorPlaceholder="Loading.gif" LoadingPlaceholder="Loading.gif" WidthRequest="80" HeightRequest="80">
+                            <ff:CachedImage.Transformations>
+                                <ffTransformations:RoundedTransformation Radius="240" />
+                            </ff:CachedImage.Transformations>
+                        </ff:CachedImage>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout x:Name="flowerImageContainer" HorizontalOptions="Center" IsVisible="false">
+                    <Label Text="Daisy" TextColor="White" HorizontalTextAlignment="Center" Font="Bold" />
+                    <ff:CachedImage x:Name="flowerImage" Source="DefaultFlowerImage.png" ErrorPlaceholder="Loading.gif" LoadingPlaceholder="Loading.gif" WidthRequest="80" HeightRequest="80">
+                        <ff:CachedImage.Transformations>
+                            <ffTransformations:RoundedTransformation Radius="240" />
+                        </ff:CachedImage.Transformations>
+                    </ff:CachedImage>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Padding="10" x:Name="heartIconContainer">
+                <IconsSet:FontAwesomeLabel x:Name="heartIcon" HorizontalOptions="End" VerticalOptions="Center" FontSize="30" TextColor="#37A000" Text="{x:Static IconsSet:Icon.FAHeartO}" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="Center">
+                <Label x:Name="flowerScientificName" Text="Scientific Name : test flower name" HorizontalTextAlignment="Center" TextColor="Gray" />
+            </StackLayout>
+            <ScrollView Padding="10" x:Name="detailsContainer">
+                <StackLayout>
+                    <StackLayout>
+                        <Label Text="Description:" TextColor="Gray" HorizontalTextAlignment="Start" Font="Bold" />
+                        <Label x:Name="description" Margin="0,5,0,0" HorizontalTextAlignment="Start" TextColor="Gray" Font="16" Text="It is an herbaceous perennial plant with short creeping rhizomes and rosettes of small rounded or spoon-shaped leaves that are from 3/4 to 2 inches (approx. 2–5 cm) long and grow flat to the ground. The species habitually colonises lawns, and is difficult to eradicate by mowing - hence the term 'lawn daisy'. Wherever it appears it is often considered an invasive weed." />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Margin="0,10,0,0" Text="Core:" TextColor="Gray" HorizontalTextAlignment="Start" Font="Bold" />
+                        <Label x:Name="careTips" Margin="0,5,0,0" HorizontalTextAlignment="Start" TextColor="Gray" Font="16" Text="It is an herbaceous perennial plant with short creeping rhizomes and rosettes of small rounded or spoon-shaped leaves that are from 3/4 to 2 inches (approx. 2–5 cm) long and grow flat to the ground. The species habitually colonises lawns, and is difficult to eradicate by mowing - hence the term 'lawn daisy'. Wherever it appears it is often considered an invasive weed." />
+                    </StackLayout>
+                    <!--<StackLayout Margin="0,10,0,0">
+                        <Label Text="More Information.." Font="Bold" TextColor="#37A000" />
+                    </StackLayout>-->
+                </StackLayout>
+            </ScrollView>
+            <StackLayout x:Name="HRbtnContainer" Margin="0,0,0,10">
+                <Label Font="10" HorizontalTextAlignment="Center" TextColor="Gray" Text="Want us to try again? Press'Send to Human Recognition' and we will have humans try to recognize the photo" />
+                <Button BackgroundColor="#37A000" WidthRequest="250" HorizontalOptions="Center" Text="Send to Human Recognition" TextColor="White" Clicked="btnHR_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:IconsSet="clr-namespace:FlowerFinder.IconsSet;assembly=FlowerFinder" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" x:Class="FlowerFinder.SettingPage" Title="Settings">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem1" Order="Primary" Icon="Logout.png" Text="Item 1" Priority="0" Clicked="Logout_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="#8AD85C" Padding="0,10,0,10">
+                <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="100" Margin="6,0,0,0" TextColor="White" Text="{x:Static IconsSet:Icon.FAPagelines}" />
+                <Label Text="Flower Finder" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="Large" />
+            </StackLayout>
+            <StackLayout Padding="5,8,5,5">
+                <Frame x:Name="profileBox">
+                    <StackLayout Orientation="Horizontal" >
+                        <ff:CachedImage x:Name="profileImage" Source="ProfileImage.png" ErrorPlaceholder="Loading.gif" LoadingPlaceholder="Loading.gif" WidthRequest="40" HeightRequest="35">
+                        <ff:CachedImage.Transformations>
+                            <ffTransformations:RoundedTransformation Radius="240" />
+                        </ff:CachedImage.Transformations>
+                    </ff:CachedImage>
+                        <!--<IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="25" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FAUserCircleO}" />-->
+                        <Label x:Name="userName" Text="Profile" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" Font="20, Bold" />
+                    </StackLayout>
+                </Frame>
+                <Frame x:Name="changePasswordBox" IsVisible="false">
+                    <StackLayout Orientation="Horizontal" >
+                        <IconsSet:FontAwesomeLabel HorizontalOptions="Center" VerticalOptions="Center" FontSize="25" Margin="6,0,0,0" TextColor="Gray" Text="{x:Static IconsSet:Icon.FAKey}" />
+                        <Label Text="Change Password" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" Font="20, Bold" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
