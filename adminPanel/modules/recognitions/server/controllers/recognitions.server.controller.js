@@ -518,7 +518,7 @@ function checkIfPlantPresentInDb(labels, callback2) {
   var hrUserId=req.query.hrUserId;
 
   var skipItem=(pageNumber-1)*perPageCount;
-  var limitItems=perPageCount;//perPageCount*pageNumber-1;
+  var limitItems=parseInt(perPageCount);//perPageCount*pageNumber-1;
 
   var jsonQuery={isDeleted:false};
 

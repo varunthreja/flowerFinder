@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.SecureStorage;
 using Xamarin.Forms;
 
 namespace FlowerFinder
@@ -64,17 +65,18 @@ namespace FlowerFinder
         protected override void OnAppearing() // Method called everytime when page appear 
         {
             base.OnAppearing();
-            if (Application.Current.Properties.ContainsKey("userId") && Application.Current.Properties["userId"].ToString() != "")
+
+            if (CrossSecureStorage.Current.HasKey("userId") && CrossSecureStorage.Current.GetValue("userId").ToString() != "")
             {
-                if (Application.Current.Properties.ContainsKey("profileImageURL") && Application.Current.Properties["profileImageURL"].ToString() != "")
+                if (CrossSecureStorage.Current.HasKey("profileImageURL") && CrossSecureStorage.Current.GetValue("profileImageURL").ToString() != "")
                 {
-                    profileImage.Source = Constants.IMAGE_BASE_URL + Application.Current.Properties["profileImageURL"].ToString();
+                    profileImage.Source = Constants.IMAGE_BASE_URL + CrossSecureStorage.Current.GetValue("profileImageURL");
                 }
                 else
                 {
                     profileImage.Source = "ProfileImage.png";
                 }
-                userName.Text = Application.Current.Properties["userName"].ToString();
+                userName.Text = CrossSecureStorage.Current.GetValue("userName");
             }
             else
             {

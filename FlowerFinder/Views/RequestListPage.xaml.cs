@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Plugin.Connectivity;
+using Plugin.SecureStorage;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
@@ -18,7 +19,7 @@ namespace FlowerFinder
         protected override async void OnAppearing() // Method called everytime when page appear 
         {
             base.OnAppearing();
-            if (Application.Current.Properties.ContainsKey("userId") && Application.Current.Properties["userId"].ToString() != "")
+            if (CrossSecureStorage.Current.HasKey("userId") && CrossSecureStorage.Current.GetValue("userId").ToString() != "")
             {
                 if (CrossConnectivity.Current.IsConnected)
                 {
@@ -27,24 +28,37 @@ namespace FlowerFinder
                     WebServiceClient apiClient = new WebServiceClient();
                     HelperClass helperClass = new HelperClass();
                     RequestListModel requestList = await apiClient.RequestList(helperClass.GetCookie(), "0");
-                    if (requestList.status.ToString()=="success")
+                    if (requestList.status.ToString() == "success")
                     {
                         //RequestListModel = requestList;
-                        foreach (var item in requestList.recognitions)
-                        { 
-                            if (string.IsNullOrEmpty(item.recognitionImageURL))
+                        if (requestList.recognitions.Count != 0)
+                        {
+                            foreach (var item in requestList.recognitions)
                             {
-                                item.recognitionImageURL = "DefaultFlowerImage.png";
-                            }
-                            else
-                            {
-                                item.recognitionImageURL = Constants.IMAGE_BASE_URL + item.recognitionImageURL ;
-                            }
-                            item.isDeleted = !item.isDeleted;
+                                if (string.IsNullOrEmpty(item.recognitionImageURL))
+                                {
+                                    item.recognitionImageURL = "DefaultFlowerImage.png";
+                                }
+                                else
+                                {
+                                    item.recognitionImageURL = Constants.IMAGE_BASE_URL + item.recognitionImageURL;
+                                }
+                                item.isDeleted = !item.isDeleted;
 
+                            }
+                            listViewRequests.ItemsSource = requestList.recognitions;
+                            listContainer.IsVisible = true;
+                            MessageContainer.IsVisible = false;
+
+                            await Navigation.PopPopupAsync(true);
                         }
-                        listViewRequests.ItemsSource = requestList.recognitions;
-                        await Navigation.PopPopupAsync(true);
+                        else
+                        {
+                            listContainer.IsVisible = false;
+                            MessageContainer.IsVisible = true;
+                            Message.Text = "Empty Request List.";
+                            await Navigation.PopPopupAsync(true);
+                        }
                     }
                     else
                     {
@@ -65,7 +79,9 @@ namespace FlowerFinder
                 }
                 else
                 {
-                    
+                    listContainer.IsVisible = false;
+                    MessageContainer.IsVisible = true;
+                    Message.Text = "Please Login to see recognize requests.";
                 }
             }
         }

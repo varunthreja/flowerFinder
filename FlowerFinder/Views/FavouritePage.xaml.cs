@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Plugin.Connectivity;
+using Plugin.SecureStorage;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
@@ -17,7 +18,7 @@ namespace FlowerFinder
         protected override async void OnAppearing() // Method called everytime when page appear 
         {
             base.OnAppearing();
-            if (Application.Current.Properties.ContainsKey("userId") && Application.Current.Properties["userId"].ToString() != "")
+            if (CrossSecureStorage.Current.HasKey("userId") && CrossSecureStorage.Current.GetValue("userId").ToString() != "")
             {
                 if (CrossConnectivity.Current.IsConnected)
                 {
@@ -29,22 +30,35 @@ namespace FlowerFinder
 
                     if (favouriteList.status.ToString() == "success")
                     {
-                        //RequestListModel = requestList;
-                        foreach (var item in favouriteList.plants)
+                        if (favouriteList.plants.Count != 0)
                         {
-                            if (string.IsNullOrEmpty(item.plantId.pictures[0]))
-                            {
-                                item.plantId.pictures[0] = "DefaultFlowerImage.png";
-                            }
-                            else
-                            {
-                                item.plantId.pictures[0] = Constants.IMAGE_BASE_URL + item.plantId.pictures[0];
-                            }
-                            item.isDeleted = !item.isDeleted;
 
+
+                            foreach (var item in favouriteList.plants)
+                            {
+                                if (string.IsNullOrEmpty(item.plantId.pictures[0]))
+                                {
+                                    item.plantId.pictures[0] = "DefaultFlowerImage.png";
+                                }
+                                else
+                                {
+                                    item.plantId.pictures[0] = Constants.IMAGE_BASE_URL + item.plantId.pictures[0];
+                                }
+                                item.isDeleted = !item.isDeleted;
+
+                            }
+                            listViewFavourites.ItemsSource = favouriteList.plants;
+                            listContainer.IsVisible = true;
+                            MessageContainer.IsVisible = false;
+                            await Navigation.PopPopupAsync(true);
                         }
-                        listViewFavourites.ItemsSource = favouriteList.plants;
-                        await Navigation.PopPopupAsync(true);
+                        else
+                        {
+                            listContainer.IsVisible = false;
+                            MessageContainer.IsVisible = true;
+                            Message.Text = "Empty Favourite List.";
+                            await Navigation.PopPopupAsync(true);
+                        }
                     }
                     else
                     {
@@ -62,6 +76,12 @@ namespace FlowerFinder
                 if (answer)
                 {
                     await Navigation.PushAsync(new LoginPage());
+                }
+                else
+                {
+                    listContainer.IsVisible = false;
+                    MessageContainer.IsVisible = true;
+                    Message.Text = "Please Login to see Favourite flowers.";
                 }
             }
         }

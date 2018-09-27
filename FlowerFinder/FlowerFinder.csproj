@@ -14,6 +14,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="System.Json" Version="4.5.0" />
+    <PackageReference Include="sameerIOTApps.Plugin.SecureStorage" Version="2.5.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="MasterPageViewModel.cs" />

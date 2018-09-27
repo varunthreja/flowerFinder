@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Plugin.Connectivity;
+using Plugin.SecureStorage;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
@@ -88,6 +89,7 @@ namespace FlowerFinder
             else
             {
                 Title = "Recognize Result";
+                flowerImageSent.Source = Constants.IMAGE_BASE_URL + recognizedFlowerDetails.recognition.recognitionImageURL;
                 recognizeId = recognizedFlowerDetails.recognition._id;
                 if (!string.IsNullOrEmpty(recognizedFlowerDetails.recognition.status))
                 {
@@ -112,7 +114,7 @@ namespace FlowerFinder
 
         async void heartIcon_clicked()
         {
-            if (Application.Current.Properties.ContainsKey("userId") && Application.Current.Properties["userId"].ToString() != "")
+            if (CrossSecureStorage.Current.HasKey("userId") && CrossSecureStorage.Current.GetValue("userId").ToString() != "")
             {
                 WebServiceClient apiClient = new WebServiceClient();
                 HelperClass helperClass = new HelperClass();
@@ -148,7 +150,7 @@ namespace FlowerFinder
 
         async void btnHR_Clicked(object sender, EventArgs e)
         {
-            if (Application.Current.Properties.ContainsKey("userId") && Application.Current.Properties["userId"].ToString() != "")
+            if (CrossSecureStorage.Current.HasKey("userId") && CrossSecureStorage.Current.GetValue("userId").ToString() != "")
             {
                 if (CrossConnectivity.Current.IsConnected)
                 {

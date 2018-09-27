@@ -112,10 +112,10 @@ module.exports = {
         roles: ['user']
       },
       seedAdmin: {
-        username: process.env.MONGO_SEED_ADMIN_USERNAME || 'kudzuadmin',
+        username: process.env.MONGO_SEED_ADMIN_USERNAME || 'superadmin',
         provider: 'local',
-        email: process.env.MONGO_SEED_ADMIN_EMAIL || 'kudzuadmin@kudzuapp.com',
-        password:'kudzuadmin@123',
+        email: process.env.MONGO_SEED_ADMIN_EMAIL || 'superadmin@test.com',
+        password:'superadmin@123',
         firstName: 'Kudzu',
         lastName: 'Admin',
         displayName: 'Kudzu Admin',

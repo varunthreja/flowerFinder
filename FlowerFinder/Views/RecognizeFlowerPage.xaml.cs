@@ -10,7 +10,7 @@ namespace FlowerFinder
 {
     public partial class RecognizeFlowerPage : ContentPage
     {
-        MediaFile flowerImage=null;
+        MediaFile flowerImage = null;
 
         public RecognizeFlowerPage()
         {
@@ -33,7 +33,7 @@ namespace FlowerFinder
             });
         }
 
-        async void btnRecognize_Clicked(object sender, System.EventArgs e)
+        async void btnRecognize_Clicked(object sender, EventArgs e)
         {
             if (CrossConnectivity.Current.IsConnected)
             {
@@ -43,12 +43,12 @@ namespace FlowerFinder
                 WebServiceClient apiClient = new WebServiceClient();
                 HelperClass helperClass = new HelperClass();
                 var flowerDetails = await apiClient.RecognizeFlower(flowerImage, helperClass.GetCookie());
-                if (flowerDetails!=null)
+                if (flowerDetails != null)
                 {
-                    if(flowerDetails.recognition!=null)
+                    if (flowerDetails.recognition != null)
                     {
                         await Navigation.PushAsync(new FlowerDetailsPage(flowerDetails, "Recognize"));
-                        await Navigation.PopPopupAsync(true); 
+                        await Navigation.PopPopupAsync(true);
                     }
                 }
                 else
@@ -62,7 +62,7 @@ namespace FlowerFinder
             }
         }
 
-        void btnNewPicture_Clicked(object sender, System.EventArgs e)
+        void btnNewPicture_Clicked(object sender, EventArgs e)
         {
             ShowImageContainer.IsVisible = false;
             CaptureOrChooseOptionsContainer.IsVisible = true;
@@ -85,14 +85,12 @@ namespace FlowerFinder
                 CompressionQuality = 50
             };
 
-            //await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingIndicator());
             flowerImage = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
 
             if (flowerImage == null)
             {
                 await DisplayAlert("Error", "Could not get the image, Please try again.", "OK");
                 image.Source = null;
-                //await Application.Current.MainPage.Navigation.PopPopupAsync(true);
                 return;
             }
             else
@@ -103,13 +101,11 @@ namespace FlowerFinder
                     return streamImg;
                 });
 
-                //recognizeImage(flowerImage);
                 ShowImageContainer.IsVisible = true;
                 CaptureOrChooseOptionsContainer.IsVisible = false;
 
             }
 
-            //await Application.Current.MainPage.Navigation.PopPopupAsync(true);
         }
 
         async void captureImage()
@@ -122,8 +118,6 @@ namespace FlowerFinder
                 return;
             }
 
-            //await Application.Current.MainPage.Navigation.PushPopupAsync(new LoadingIndicator());
-
             flowerImage = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
                 Directory = "Sample",
@@ -135,7 +129,6 @@ namespace FlowerFinder
 
             if (flowerImage == null)
             {
-                //await Application.Current.MainPage.Navigation.PopPopupAsync(true);
                 return;
             }
             else
@@ -153,21 +146,9 @@ namespace FlowerFinder
                 //string base64 = System.Convert.ToBase64String(bytes);
                 //Console.WriteLine(base64);
 
-                //recognizeImage(flowerImage);
                 ShowImageContainer.IsVisible = true;
                 CaptureOrChooseOptionsContainer.IsVisible = false;
-
             }
-            //await Application.Current.MainPage.Navigation.PopPopupAsync(true);
         }
-
-        //async void recognizeImage(MediaFile image)
-        //{
-
-        //    //network check for the device
-
-        //}
     }
-
-
 }

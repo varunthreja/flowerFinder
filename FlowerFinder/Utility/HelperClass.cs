@@ -1,4 +1,5 @@
 ﻿using System;
+using Plugin.SecureStorage;
 using Xamarin.Forms;
 
 namespace FlowerFinder
@@ -9,15 +10,14 @@ namespace FlowerFinder
 
         public void SetCookie(string cookie)
         {
-            Application.Current.Properties["sessionId"] = cookie;
-            Application.Current.SavePropertiesAsync();
+            CrossSecureStorage.Current.SetValue("sessionId", cookie);
         }
 
         public string GetCookie()
         {
-            if (Application.Current.Properties.ContainsKey("sessionId") && Application.Current.Properties["sessionId"].ToString() != "")
+            if (CrossSecureStorage.Current.HasKey("sessionId") && CrossSecureStorage.Current.GetValue("sessionId").ToString() != "")
             {
-                return Application.Current.Properties["sessionId"].ToString();
+                return CrossSecureStorage.Current.GetValue("sessionId");
             }
             else
             {

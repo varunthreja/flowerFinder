@@ -56,6 +56,17 @@
           "lib/netstandard1.0/Rg.Plugins.Popup.dll": {}
         }
       },
+      "sameerIOTApps.Plugin.SecureStorage/2.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/netstandard1.0/Plugin.SecureStorage.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/netstandard1.0/Plugin.SecureStorage.dll": {}
+        }
+      },
       "SkiaSharp/1.60.0": {
         "type": "package",
         "compile": {
@@ -400,6 +411,27 @@
         "readme.txt",
         "rg.plugins.popup.1.1.4.168.nupkg.sha512",
         "rg.plugins.popup.nuspec"
+      ]
+    },
+    "sameerIOTApps.Plugin.SecureStorage/2.5.0": {
+      "sha512": "dguQ8+d2VyfwkiLuOJCcVc6ICKjpqaAwKIc3aHopM084CvTgVQ6IlyE6dBqzW0U5cVnlma5e+Lb2lCwuCW3pKg==",
+      "type": "package",
+      "path": "sameeriotapps.plugin.securestorage/2.5.0",
+      "files": [
+        "lib/MonoAndroid10/Plugin.SecureStorage.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.SecureStorage.dll",
+        "lib/UAP10/Plugin.SecureStorage.Abstractions.dll",
+        "lib/UAP10/Plugin.SecureStorage.dll",
+        "lib/Xamarin.Mac/Plugin.SecureStorage.Abstractions.dll",
+        "lib/Xamarin.Mac/Plugin.SecureStorage.dll",
+        "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.SecureStorage.dll",
+        "lib/netstandard1.0/Plugin.SecureStorage.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.SecureStorage.dll",
+        "lib/tizen40/Plugin.SecureStorage.Abstractions.dll",
+        "lib/tizen40/Plugin.SecureStorage.dll",
+        "sameeriotapps.plugin.securestorage.2.5.0.nupkg.sha512",
+        "sameeriotapps.plugin.securestorage.nuspec"
       ]
     },
     "SkiaSharp/1.60.0": {
@@ -891,7 +923,8 @@
       "Xamarin.FFImageLoading.Forms >= 2.4.3.840",
       "Xamarin.FFImageLoading.Svg >= 2.4.3.840",
       "Xamarin.FFImageLoading.Transformations >= 2.4.3.840",
-      "Xamarin.Forms >= 3.1.0.697729"
+      "Xamarin.Forms >= 3.1.0.697729",
+      "sameerIOTApps.Plugin.SecureStorage >= 2.5.0"
     ]
   },
   "packageFolders": {
@@ -974,6 +1007,10 @@
           "System.Json": {
             "target": "Package",
             "version": "4.5.0"
+          },
+          "sameerIOTApps.Plugin.SecureStorage": {
+            "target": "Package",
+            "version": "2.5.0"
           }
         },
         "imports": [

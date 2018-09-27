@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Plugin.Connectivity;
+using Plugin.SecureStorage;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
@@ -61,14 +62,13 @@ namespace FlowerFinder
 
                     if (userDetails.status == "success")
                     {
-                        Application.Current.Properties["userId"] = userDetails.user._id;
-                        Application.Current.Properties["userName"] = userDetails.user.displayName;
-                        Application.Current.Properties["email"] = userDetails.user.email;
-                        Application.Current.Properties["firstName"] = userDetails.user.firstName;
-                        Application.Current.Properties["lastName"] = userDetails.user.lastName;
-                        Application.Current.Properties["provider"] = userDetails.user.provider;
-                        Application.Current.Properties["profileImageURL"] = userDetails.user.profileImageURL;
-                        await Application.Current.SavePropertiesAsync();
+                        CrossSecureStorage.Current.SetValue("userId", userDetails.user._id);
+                        CrossSecureStorage.Current.SetValue("userName", userDetails.user.displayName);
+                        CrossSecureStorage.Current.SetValue("email", userDetails.user.email);
+                        CrossSecureStorage.Current.SetValue("firstName", userDetails.user.firstName);
+                        CrossSecureStorage.Current.SetValue("lastName", userDetails.user.lastName);
+                        CrossSecureStorage.Current.SetValue("provider", userDetails.user.provider);
+                        CrossSecureStorage.Current.SetValue("profileImageURL", userDetails.user.profileImageURL);
 
                         await Navigation.PopPopupAsync(true); //closing loader
                         await Navigation.PopAsync(true);

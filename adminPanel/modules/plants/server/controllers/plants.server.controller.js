@@ -183,7 +183,7 @@ function getRecognitionImageById(id,callback){
   var searchText=req.query.searchText.trim();
 
   var skipItem=(pageNumber-1)*perPageCount;
-  var limitItems=perPageCount;//perPageCount*pageNumber-1;
+  var limitItems=parseInt(perPageCount);//perPageCount*pageNumber-1;
 
   var jsonQuery={};
 
@@ -207,14 +207,20 @@ Plants.count(jsonQuery).exec(function(errcount, totalPlant){
    .limit(limitItems)
    .exec(function (err, plants) {
      if (err) {
-       return res.status(422).send({
-         message: errorHandler.getErrorMessage(err)
-       });
+       // return res.status(422).send({
+       //   message: errorHandler.getErrorMessage(err)
+       // });
+        response={
+       data:plants,
+       total:totalPlant,
+       error:err
+     }
      }
 
      response={
        data:plants,
        total:totalPlant
+       
      }
 
      res.json(response);

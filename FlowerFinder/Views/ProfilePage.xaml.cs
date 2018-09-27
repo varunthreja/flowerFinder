@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Plugin.Connectivity;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.SecureStorage;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
@@ -24,18 +25,18 @@ namespace FlowerFinder
                 })
             });
 
-            if (Application.Current.Properties.ContainsKey("userId") && Application.Current.Properties["userId"].ToString() != "")
+            if (CrossSecureStorage.Current.HasKey("userId") && CrossSecureStorage.Current.GetValue("userId").ToString() != "")
             {
-                firstName.Text = Application.Current.Properties["firstName"].ToString();
-                lastName.Text = Application.Current.Properties["lastName"].ToString();
-                email.Text = Application.Current.Properties["email"].ToString();
-                if (Application.Current.Properties.ContainsKey("phoneNo") && Application.Current.Properties["phoneNo"].ToString() != "")
+                firstName.Text = CrossSecureStorage.Current.GetValue("firstName");
+                lastName.Text = CrossSecureStorage.Current.GetValue("lastName");
+                email.Text = CrossSecureStorage.Current.GetValue("email");
+                if (CrossSecureStorage.Current.HasKey("phoneNo") && CrossSecureStorage.Current.GetValue("phoneNo").ToString() != "")
                 {
-                    phoneNumber.Text = Application.Current.Properties["phoneNo"].ToString();
+                    phoneNumber.Text = CrossSecureStorage.Current.GetValue("phoneNo");
                 }
-                if (Application.Current.Properties.ContainsKey("profileImageURL") && Application.Current.Properties["profileImageURL"].ToString() != "")
+                if (CrossSecureStorage.Current.HasKey("profileImageURL") && CrossSecureStorage.Current.GetValue("profileImageURL").ToString() != "")
                 {
-                    profileImage.Source = Constants.IMAGE_BASE_URL + Application.Current.Properties["profileImageURL"].ToString();
+                    profileImage.Source = Constants.IMAGE_BASE_URL + CrossSecureStorage.Current.GetValue("profileImageURL");
                 }
                 else
                 {
@@ -63,18 +64,18 @@ namespace FlowerFinder
         protected override void OnAppearing() // Method called everytime when page appear 
         {
             base.OnAppearing();
-            if (Application.Current.Properties.ContainsKey("userId") && Application.Current.Properties["userId"].ToString() != "")
+            if (CrossSecureStorage.Current.HasKey("userId") && CrossSecureStorage.Current.GetValue("userId").ToString() != "")
             {
-                firstName.Text = Application.Current.Properties["firstName"].ToString();
-                lastName.Text = Application.Current.Properties["lastName"].ToString();
-                email.Text = Application.Current.Properties["email"].ToString();
-                if (Application.Current.Properties.ContainsKey("phoneNo") && Application.Current.Properties["phoneNo"].ToString() != "")
+                firstName.Text = CrossSecureStorage.Current.GetValue("firstName");
+                lastName.Text = CrossSecureStorage.Current.GetValue("lastName");
+                email.Text = CrossSecureStorage.Current.GetValue("email");
+                if (CrossSecureStorage.Current.HasKey("phoneNo") && CrossSecureStorage.Current.GetValue("phoneNo").ToString() != "")
                 {
-                    phoneNumber.Text = Application.Current.Properties["phoneNo"].ToString();
+                    phoneNumber.Text = CrossSecureStorage.Current.GetValue("phoneNo");
                 }
-                if (Application.Current.Properties.ContainsKey("profileImageURL") && Application.Current.Properties["profileImageURL"].ToString() != "")
+                if (CrossSecureStorage.Current.HasKey("profileImageURL") && CrossSecureStorage.Current.GetValue("profileImageURL").ToString() != "")
                 {
-                    profileImage.Source = Constants.IMAGE_BASE_URL + Application.Current.Properties["profileImageURL"].ToString();
+                    profileImage.Source = Constants.IMAGE_BASE_URL + CrossSecureStorage.Current.GetValue("profileImageURL");
                 }
                 else
                 {
@@ -183,8 +184,8 @@ namespace FlowerFinder
                     if(profileImg!=null && profileImg.status.ToString() == "success")
                     {
                        // profileImg.
-                        Application.Current.Properties["profileImageURL"] = profileImg.user.profileImageURL;
-                        profileImage.Source = Constants.IMAGE_BASE_URL + Application.Current.Properties["profileImageURL"].ToString();
+                        CrossSecureStorage.Current.SetValue("profileImageURL", profileImg.user.profileImageURL) ;
+                        profileImage.Source = Constants.IMAGE_BASE_URL + CrossSecureStorage.Current.GetValue("profileImageURL");
                         await Application.Current.SavePropertiesAsync();
                         await Navigation.PopPopupAsync(true);
                     }
@@ -228,12 +229,11 @@ namespace FlowerFinder
                     var userProfileDetails = await apiClient.UpdateProfile(fname, lname, phoneNo, helperClass.GetCookie());
                     if (userProfileDetails != null && userProfileDetails.status == "success")
                     {
-                        Application.Current.Properties["userName"] = userProfileDetails.user.displayName;
-                        Application.Current.Properties["email"] = userProfileDetails.user.email;
-                        Application.Current.Properties["firstName"] = userProfileDetails.user.firstName;
-                        Application.Current.Properties["lastName"] = userProfileDetails.user.lastName;
-                        Application.Current.Properties["phoneNo"] = userProfileDetails.user.phoneNumber;
-                        await Application.Current.SavePropertiesAsync();
+                        CrossSecureStorage.Current.SetValue("userName", userProfileDetails.user.displayName);
+                        CrossSecureStorage.Current.SetValue("email", userProfileDetails.user.email);
+                        CrossSecureStorage.Current.SetValue("firstName", userProfileDetails.user.firstName);
+                        CrossSecureStorage.Current.SetValue("lastName", userProfileDetails.user.lastName);
+                        CrossSecureStorage.Current.SetValue("phoneNo", userProfileDetails.user.phoneNumber.ToString());
 
                         await Navigation.PopPopupAsync(true); // closing loader
                     }
