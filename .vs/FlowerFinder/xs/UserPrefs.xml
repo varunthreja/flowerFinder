@@ -1,0 +1,17 @@
+﻿<Properties StartupConfiguration="{D473BF7B-5898-4398-B523-B825CEC0F6AA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FlowerFinder/APIs/WebServiceClient.cs">
+    <Files>
+      <File FileName="FlowerFinder/APIs/WebServiceClient.cs" Line="7" Column="19" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Library/Frameworks/Xamarin.iOS.framework/Versions/11.14.0.13/lib/msbuild/iOS/Xamarin.iOS.Common.targets" line="1350" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FlowerFinder.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.AB645DF1-DBFE-4329-B1A8-72225F1122A5" automaticSigning="False" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.FlowerFinder.Android PreferredExecutionTarget="Android.Android_Accelerated_Nougat" />
+</Properties>
